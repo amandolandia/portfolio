@@ -252,6 +252,9 @@ const updateProjectLinks = (lang) => {
 
     const moreProjects = document.querySelector('.more-projects a.pill-button[href="projetos.html"], .more-projects a.pill-button[href="projetos-en.html"]');
     if (moreProjects) moreProjects.href = isEnglish ? "projetos-en.html" : "projetos.html";
+
+    const allPublications = document.querySelector('.more-projects a.pill-button[href="publicacoes.html"], .more-projects a.pill-button[href="publicacoes-en.html"]');
+    if (allPublications) allPublications.href = isEnglish ? "publicacoes-en.html" : "publicacoes.html";
   }
 
   if (currentFile === "projetos.html" || currentFile === "projetos-en.html") {
@@ -316,6 +319,7 @@ const translations = {
     publicationDescription:
       "Artigo sobre iniciativas brasileiras que utilizam tecnologias digitais como forma de resistência às estruturas coloniais, com o Design da Informação como ferramenta de mapeamento.",
     publicationCta: "Ler publicação",
+    allPublicationsCta: "Ver todas as publicações",
     aboutEyebrow: "por trás da tela",
     aboutTitle: "Um pouco sobre mim.",
     aboutTextOne:
@@ -422,6 +426,7 @@ const translations = {
     publicationDescription:
       "An article about Brazilian initiatives that use digital technologies as resistance to colonial structures, with Information Design as a mapping tool.",
     publicationCta: "Read publication",
+    allPublicationsCta: "View all publications",
     aboutEyebrow: "behind the screen",
     aboutTitle: "A little about me.",
     aboutTextOne:
