@@ -47,30 +47,6 @@ const initialLanguage = pageDefaultLanguage === "en"
   ? "en"
   : (savedLanguage || (browserLanguage.toLowerCase().startsWith("pt") ? "pt" : "en"));
 
-const languagePageMap = {
-  "index.html": { pt: "index.html", en: "index.html" },
-  "projetos.html": { pt: "projetos.html", en: "projetos.html" },
-  "projetos-en.html": { pt: "projetos.html", en: "projetos.html" },
-  "publicacoes.html": { pt: "publicacoes.html", en: "publicacoes.html" },
-  "publicacoes-en.html": { pt: "publicacoes.html", en: "publicacoes.html" },
-  "mai.html": { pt: "mai.html", en: "mai.html" },
-  "mai-en.html": { pt: "mai.html", en: "mai.html" },
-  "marty.html": { pt: "marty.html", en: "marty.html" },
-  "marty-en.html": { pt: "marty.html", en: "marty.html" },
-  "curriculo.html": { pt: "curriculo.html", en: "curriculo.html" },
-};
-
-const counterpartPageMap = {
-  "projetos.html": "projetos-en.html",
-  "projetos-en.html": "projetos.html",
-  "publicacoes.html": "publicacoes-en.html",
-  "publicacoes-en.html": "publicacoes.html",
-  "mai.html": "mai-en.html",
-  "mai-en.html": "mai.html",
-  "marty.html": "marty-en.html",
-  "marty-en.html": "marty.html",
-};
-
 const navigationLanguageMap = {
   "index.html": {
     pt: {
@@ -104,39 +80,7 @@ const navigationLanguageMap = {
       contact: "index.html#contact",
     },
   },
-  "projetos-en.html": {
-    pt: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-    en: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-  },
   "publicacoes.html": {
-    pt: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-    en: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-  },
-  "publicacoes-en.html": {
     pt: {
       home: "index.html#top",
       projects: "projetos.html",
@@ -168,39 +112,7 @@ const navigationLanguageMap = {
       contact: "index.html#contact",
     },
   },
-  "mai-en.html": {
-    pt: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-    en: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-  },
   "marty.html": {
-    pt: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-    en: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-  },
-  "marty-en.html": {
     pt: {
       home: "index.html#top",
       projects: "projetos.html",
@@ -254,75 +166,25 @@ const updateProjectLinks = (lang) => {
   const currentFile = window.location.pathname.split("/").pop() || "index.html";
 
   if (currentFile === "index.html") {
-    const maiCard = document.querySelector('a.work-feature[href="mai.html"], a.work-feature[href="mai-en.html"]');
+    const maiCard = document.querySelector('a.work-feature[href="mai.html"]');
     if (maiCard) maiCard.href = "mai.html";
 
-    const martyCard = document.querySelector('a.work-feature[href="marty.html"], a.work-feature[href="marty-en.html"]');
+    const martyCard = document.querySelector('a.work-feature[href="marty.html"]');
     if (martyCard) martyCard.href = "marty.html";
 
-    const moreProjects = document.querySelector('.more-projects a.pill-button[href="projetos.html"], .more-projects a.pill-button[href="projetos-en.html"]');
+    const moreProjects = document.querySelector('.more-projects a.pill-button[href="projetos.html"]');
     if (moreProjects) moreProjects.href = "projetos.html";
 
-    const allPublications = document.querySelector('.more-projects a.pill-button[href="publicacoes.html"], .more-projects a.pill-button[href="publicacoes-en.html"]');
+    const allPublications = document.querySelector('.more-projects a.pill-button[href="publicacoes.html"]');
     if (allPublications) allPublications.href = "publicacoes.html";
   }
 
-  if (currentFile === "projetos.html" || currentFile === "projetos-en.html") {
-    const maiCard = document.querySelector('a.work-feature[href="mai.html"], a.work-feature[href="mai-en.html"]');
+  if (currentFile === "projetos.html") {
+    const maiCard = document.querySelector('a.work-feature[href="mai.html"]');
     if (maiCard) maiCard.href = "mai.html";
 
-    const martyCard = document.querySelector('a.work-feature[href="marty.html"], a.work-feature[href="marty-en.html"]');
+    const martyCard = document.querySelector('a.work-feature[href="marty.html"]');
     if (martyCard) martyCard.href = "marty.html";
-  }
-};
-
-const applyLanguageVariant = async (lang) => {
-  const currentFile = window.location.pathname.split("/").pop() || "index.html";
-  const isEnglishSource = currentFile.endsWith("-en.html");
-  const counterpartFile =
-    (lang === "en" && !isEnglishSource) || (lang === "pt" && isEnglishSource)
-      ? counterpartPageMap[currentFile]
-      : null;
-  if (!counterpartFile) return;
-
-  try {
-    const response = await fetch(counterpartFile, { cache: "no-cache" });
-    if (!response.ok) return;
-
-    const html = await response.text();
-    const parsed = new DOMParser().parseFromString(html, "text/html");
-
-    const nextMain = parsed.querySelector("main");
-    const nextHeader = parsed.querySelector("header.site-header");
-    const nextFooter = parsed.querySelector("footer");
-
-    if (nextHeader) {
-      const currentHeader = document.querySelector("header.site-header");
-      if (currentHeader) currentHeader.innerHTML = nextHeader.innerHTML;
-    }
-
-    if (nextMain) {
-      const currentMain = document.querySelector("main");
-      if (currentMain) currentMain.innerHTML = nextMain.innerHTML;
-    }
-
-    if (nextFooter) {
-      const currentFooter = document.querySelector("footer");
-      if (currentFooter) currentFooter.innerHTML = nextFooter.innerHTML;
-    }
-
-    document.title = parsed.title;
-
-    const description = parsed.querySelector('meta[name="description"]')?.getAttribute("content");
-    if (description) {
-      const meta = document.querySelector('meta[name="description"]');
-      if (meta) meta.setAttribute("content", description);
-    }
-
-    const nextLang = parsed.documentElement.lang?.toLowerCase().startsWith("en") ? "en" : "pt-BR";
-    document.documentElement.lang = nextLang;
-  } catch (error) {
-    console.warn("Could not load language variant:", error);
   }
 };
 
@@ -580,7 +442,6 @@ const setLanguage = (language, shouldPersist = false) => {
 
   updateNavigationLinks(lang);
   updateProjectLinks(lang);
-  applyLanguageVariant(lang);
 
   if (shouldPersist) {
     localStorage.setItem("site-language", lang);
