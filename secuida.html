@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SeCuida | Amanda Gomes</title>
+    <meta
+      name="description"
+      content="Case do projeto SeCuida, um gerenciador de saúde."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .case-main {
+        --case-max: 1120px;
+      }
+
+      .case-nav {
+        display: flex;
+        justify-content: center;
+        padding: 18px clamp(18px, 4vw, 56px);
+        border-bottom: 1px solid var(--line);
+        background: color-mix(in srgb, var(--paper) 82%, transparent);
+        backdrop-filter: blur(18px);
+      }
+
+      .case-nav a {
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      .case-hero {
+        min-height: 92svh;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        padding: clamp(84px, 13vw, 170px) 18px clamp(64px, 10vw, 120px);
+      }
+
+      .case-label,
+      .case-section-label {
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .case-title {
+        max-width: 980px;
+        margin: 18px auto 0;
+        font-family: var(--serif);
+        font-size: clamp(4rem, 10vw, 9rem);
+        font-weight: 600;
+        line-height: 0.88;
+      }
+
+      .case-title span {
+        color: var(--accent);
+        font-style: italic;
+      }
+
+      .case-subtitle {
+        max-width: 760px;
+        margin: 28px auto 0;
+        color: var(--muted);
+        font-size: clamp(1.05rem, 2vw, 1.35rem);
+        line-height: 1.6;
+      }
+
+      .case-tags {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 34px;
+      }
+
+      .case-tags span {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 8px 14px;
+        background: var(--surface);
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      .case-section {
+        width: min(100% - 36px, var(--case-max));
+        margin-inline: auto;
+        padding: clamp(70px, 10vw, 120px) 0;
+      }
+
+      .case-section.alt {
+        width: 100%;
+        max-width: none;
+        padding-inline: 18px;
+        background: var(--surface);
+      }
+
+      .case-section.alt > * {
+        width: min(100%, var(--case-max));
+        margin-inline: auto;
+      }
+
+      .case-section-header {
+        max-width: 780px;
+        margin: 0 auto clamp(30px, 5vw, 58px);
+        text-align: center;
+      }
+
+      .case-section-title {
+        margin: 10px 0 0;
+        font-family: var(--serif);
+        font-size: clamp(2.4rem, 4.6vw, 4.8rem);
+        font-weight: 600;
+        line-height: 1;
+      }
+
+      .case-section-description {
+        margin: 18px auto 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.7;
+      }
+
+      .case-grid,
+      .journey-grid,
+      .principles-grid,
+      .learning-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .principles-grid,
+      .learning-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .case-card,
+      .journey-card,
+      .principle-card,
+      .learning-card,
+      .screen-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        padding: clamp(22px, 3vw, 32px);
+      }
+
+      .case-card:nth-child(2),
+      .journey-card:nth-child(2n),
+      .principle-card:nth-child(2n),
+      .learning-card:nth-child(2n) {
+        background: color-mix(in srgb, var(--sage) 42%, var(--surface));
+      }
+
+      .case-card:nth-child(3),
+      .journey-card:nth-child(3n),
+      .principle-card:nth-child(3n) {
+        background: color-mix(in srgb, var(--accent-soft) 72%, var(--surface));
+      }
+
+      .case-card h3,
+      .journey-card h3,
+      .principle-card h3,
+      .learning-card h3,
+      .screen-card h3 {
+        margin: 0 0 12px;
+        font-family: var(--serif);
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        line-height: 1;
+      }
+
+      .case-card p,
+      .journey-card p,
+      .principle-card p,
+      .learning-card p,
+      .screen-card p,
+      .screen-card li {
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .phone-row {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: clamp(22px, 5vw, 70px);
+        align-items: center;
+      }
+
+      .phone-mockup {
+        width: min(100%, 330px);
+        min-height: 560px;
+        margin-inline: auto;
+        border: 1px solid var(--ink);
+        border-radius: 38px;
+        padding: 22px;
+        background: var(--charcoal);
+      }
+
+      .phone-screen {
+        min-height: 516px;
+        border-radius: 26px;
+        background: var(--paper);
+        padding: 28px 20px;
+      }
+
+      .app-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 28px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 800;
+      }
+
+      .health-card {
+        margin-bottom: 14px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 16px;
+        background: var(--surface);
+      }
+
+      .health-card strong {
+        display: block;
+        margin-bottom: 8px;
+        font-family: var(--serif);
+        font-size: 1.5rem;
+        line-height: 1;
+      }
+
+      .health-card span {
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .screen-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      ul {
+        padding-left: 1.1rem;
+      }
+
+      .case-footer {
+        padding: 42px 18px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        text-align: center;
+        font-size: 0.9rem;
+        font-weight: 700;
+      }
+
+      @media (max-width: 860px) {
+        .case-grid,
+        .journey-grid,
+        .principles-grid,
+        .learning-grid,
+        .phone-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .case-title {
+          font-size: clamp(3.1rem, 16vw, 4.5rem);
+        }
+
+        .case-section {
+          width: min(100% - 24px, var(--case-max));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="case-nav" aria-label="Navegacao do case">
+      <a href="index.html">voltar ao portfolio</a>
+    </header>
+
+    <main class="case-main">
+      <section class="case-hero">
+        <div>
+          <p class="case-label reveal">Gerenciador de saúde</p>
+          <h1 class="case-title reveal"><span>SeCuida</span><br />Seu cuidado em um só lugar</h1>
+          <p class="case-subtitle reveal">
+            Um aplicativo pensado para ajudar pessoas a organizar informações de saúde, acompanhar rotinas de cuidado e manter dados importantes sempre acessíveis.
+          </p>
+          <div class="case-tags reveal">
+            <span>Product Design</span>
+            <span>App Mobile</span>
+            <span>Saúde</span>
+            <span>Organização pessoal</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section alt">
+        <div class="case-section-header reveal">
+          <p class="case-section-label">Visão geral</p>
+          <h2 class="case-section-title">Saúde cotidiana também precisa de design.</h2>
+          <p class="case-section-description">
+            SeCuida parte de uma necessidade simples: reunir, lembrar e consultar informações de saúde sem depender de papéis soltos, memória ou conversas espalhadas.
+          </p>
+        </div>
+
+        <div class="case-grid">
+          <article class="case-card reveal">
+            <h3>O problema</h3>
+            <p>
+              Consultas, medicamentos, exames e sintomas costumam ficar distribuídos em lugares diferentes, dificultando acompanhamento e tomada de decisão.
+            </p>
+          </article>
+          <article class="case-card reveal">
+            <h3>A proposta</h3>
+            <p>
+              Criar um gerenciador de saúde pessoal com informações organizadas, lembretes e registros que ajudem no cuidado contínuo.
+            </p>
+          </article>
+          <article class="case-card reveal">
+            <h3>O foco de design</h3>
+            <p>
+              Tornar uma categoria sensível mais clara, acolhedora e fácil de usar, evitando linguagem técnica ou sensação de sobrecarga.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="case-section-header reveal">
+          <p class="case-section-label">Experiência</p>
+          <h2 class="case-section-title">Organizar sem assustar.</h2>
+          <p class="case-section-description">
+            A interface precisava equilibrar utilidade e cuidado emocional: saúde envolve urgência, ansiedade e responsabilidade, então cada decisão visual deveria reduzir esforço.
+          </p>
+        </div>
+
+        <div class="phone-row">
+          <div class="phone-mockup reveal" aria-label="Mockup conceitual do aplicativo SeCuida">
+            <div class="phone-screen">
+              <div class="app-header">
+                <span>SeCuida</span>
+                <span>Hoje</span>
+              </div>
+              <div class="health-card">
+                <strong>Próximo cuidado</strong>
+                <span>Medicamento às 18h</span>
+              </div>
+              <div class="health-card">
+                <strong>Consulta</strong>
+                <span>Dermatologista · quinta-feira</span>
+              </div>
+              <div class="health-card">
+                <strong>Registros</strong>
+                <span>Sintomas, exames e histórico</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="screen-list">
+            <article class="screen-card reveal">
+              <h3>Dashboard de cuidado</h3>
+              <p>Uma visão inicial com o que exige atenção agora: lembretes, próximas consultas e registros recentes.</p>
+            </article>
+            <article class="screen-card reveal">
+              <h3>Histórico organizado</h3>
+              <p>Informações de saúde agrupadas por tipo para facilitar consulta em atendimentos ou acompanhamento pessoal.</p>
+            </article>
+            <article class="screen-card reveal">
+              <h3>Lembretes úteis</h3>
+              <p>Alertas pensados para apoiar a rotina sem transformar cuidado em cobrança constante.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section alt">
+        <div class="case-section-header reveal">
+          <p class="case-section-label">Jornada</p>
+          <h2 class="case-section-title">Da informação solta ao cuidado acompanhado.</h2>
+        </div>
+
+        <div class="journey-grid">
+          <article class="journey-card reveal">
+            <h3>Cadastro inicial</h3>
+            <p>Coletar apenas o necessário para começar, evitando um onboarding longo em um tema que já pode ser sensível.</p>
+          </article>
+          <article class="journey-card reveal">
+            <h3>Registro de saúde</h3>
+            <p>Permitir que a pessoa adicione medicamentos, consultas, sintomas e exames de forma simples e progressiva.</p>
+          </article>
+          <article class="journey-card reveal">
+            <h3>Acompanhamento</h3>
+            <p>Trazer lembretes e informações importantes no momento certo, ajudando a manter consistência no cuidado.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="case-section-header reveal">
+          <p class="case-section-label">Princípios de design</p>
+          <h2 class="case-section-title">Decisões para uma experiência mais humana.</h2>
+        </div>
+
+        <div class="principles-grid">
+          <article class="principle-card reveal">
+            <h3>Clareza antes de completude</h3>
+            <p>Em vez de mostrar tudo ao mesmo tempo, a interface prioriza o que a pessoa precisa ver ou fazer primeiro.</p>
+          </article>
+          <article class="principle-card reveal">
+            <h3>Tom acolhedor</h3>
+            <p>A experiência evita linguagem alarmista e usa textos diretos, calmos e fáceis de entender.</p>
+          </article>
+          <article class="principle-card reveal">
+            <h3>Controle do usuário</h3>
+            <p>Dados de saúde são pessoais. A pessoa precisa sentir que entende, edita e decide o que registrar.</p>
+          </article>
+          <article class="principle-card reveal">
+            <h3>Rotina sustentável</h3>
+            <p>Lembretes e registros devem apoiar o cuidado sem criar fadiga de notificações ou excesso de tarefas.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section alt">
+        <div class="case-section-header reveal">
+          <p class="case-section-label">Aprendizados</p>
+          <h2 class="case-section-title">O que esse projeto exercita.</h2>
+        </div>
+
+        <div class="learning-grid">
+          <article class="learning-card reveal">
+            <h3>Saúde exige confiança</h3>
+            <p>Uma interface de saúde precisa parecer confiável sem ficar fria. O equilíbrio está em clareza, consistência e cuidado no texto.</p>
+          </article>
+          <article class="learning-card reveal">
+            <h3>Menos campos, mais continuidade</h3>
+            <p>O valor do produto não está em preencher tudo de uma vez, mas em permitir evolução gradual do histórico.</p>
+          </article>
+          <article class="learning-card reveal">
+            <h3>Organização é parte da experiência</h3>
+            <p>A arquitetura da informação precisa responder rápido: o que tenho hoje, o que já aconteceu e o que vem depois.</p>
+          </article>
+          <article class="learning-card reveal">
+            <h3>Design também reduz ansiedade</h3>
+            <p>Hierarquia visual, linguagem e ritmo de interação ajudam a tornar um assunto sensível mais manejável.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="case-footer">
+      SeCuida - Seu gerenciador de saúde
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

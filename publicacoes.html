@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Publicacoes | Amanda Gomes</title>
+    <meta
+      name="description"
+      content="Publicacoes de Amanda Gomes sobre design da informacao, pesquisa e tecnologia."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" aria-label="Navegacao principal">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="site-nav">
+        <a href="index.html#top">home</a>
+        <a href="projetos.html">projetos</a>
+        <a href="publicacoes.html">publicações</a>
+        <a href="curriculo.html">sobre</a>
+        <a href="index.html#contact">contato</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section-wrap split-heading" style="padding-top: clamp(120px, 14vw, 180px)">
+        <div>
+          <p class="eyebrow">publicações</p>
+          <h1 class="section-title">Pesquisa, design e tecnologia.</h1>
+        </div>
+        <p class="section-copy">
+          Produções acadêmicas e textos que conectam design da informação, tecnologia e contexto social.
+        </p>
+      </section>
+
+      <section class="section-wrap publications" aria-label="Lista de publicações">
+        <div class="publication-list">
+          <a
+            class="publication-card reveal"
+            href="https://www.proceedings.blucher.com.br/article-details/cartografias-de-resistncia-mapeamento-de-iniciativas-decoloniais-digitais-no-brasil-por-meio-do-design-da-informao-40180"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>CIDI 2025 · Blucher Design Proceedings</span>
+            <h3>Cartografias de resistência: mapeamento de iniciativas decoloniais digitais no Brasil por meio do Design da Informação</h3>
+            <p>
+              Artigo sobre iniciativas brasileiras que utilizam tecnologias digitais como forma de resistência às estruturas coloniais,
+              com o Design da Informação como ferramenta de mapeamento.
+            </p>
+            <strong>Ler publicação</strong>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>© 2026 by Amanda Gomes.</span>
+      <div class="language-switcher" aria-label="Selecionar idioma">
+        <button class="active" type="button" data-lang="pt" aria-pressed="true">
+          <span aria-hidden="true">🇧🇷</span>
+          <span>PT</span>
+        </button>
+        <button type="button" data-lang="en" aria-pressed="false">
+          <span aria-hidden="true">🇺🇸</span>
+          <span>EN</span>
+        </button>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

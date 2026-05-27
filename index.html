@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Amanda Gomes | Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio de Amanda Gomes, com projetos, trajetória e formas de contato."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header" aria-label="Navegacao principal" data-i18n-attr="aria-label:navLabel">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="site-nav">
+        <a href="#top" data-i18n="navHome">home</a>
+        <a href="projetos.html" data-i18n="navProjects">projetos</a>
+        <a href="publicacoes.html" data-i18n="navPublications">publicações</a>
+        <a href="curriculo.html" data-i18n="navAbout">sobre</a>
+        <a href="#contact" data-i18n="navContact">contato</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section-wrap">
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <img class="hero-avatar reveal" src="assets/amanda-gomes.jpg" alt="Foto de Amanda Gomes sorrindo" data-i18n-attr="alt:heroAvatarAlt" />
+            <h1 class="hero-title reveal" data-i18n-html="heroTitle">
+              Olá, eu me chamo <strong>Amanda Gomes</strong> e sou <strong>designer de produtos digitais</strong>.
+            </h1>
+            <p class="hero-summary reveal" data-i18n="heroSummary">
+              Product Designer com experiência em produtos digitais para web, mobile e chatbots, em projetos de energia, financeiro e aeroespacial.
+              Pesquisa acessibilidade digital em chatbots no mestrado.
+            </p>
+            <div class="hero-bottom reveal">
+              <a class="scroll-cue" href="#approach" aria-label="Rolar para projetos" data-i18n-attr="aria-label:heroScrollLabel">
+                <span aria-hidden="true">↓</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="approach section-wrap" id="approach" aria-label="Como eu transformo ideias em produtos" data-i18n-attr="aria-label:approachLabel">
+        <p class="eyebrow reveal" data-i18n="approachEyebrow">como eu trabalho</p>
+        <h2 class="section-title reveal" data-i18n="approachTitle">Como eu transformo ideias em produtos.</h2>
+        <div class="approach-grid">
+          <article class="approach-item reveal">
+            <svg class="process-illustration" viewBox="0 0 120 92" aria-hidden="true">
+              <circle class="soft-fill" cx="48" cy="38" r="24" />
+              <circle cx="48" cy="38" r="24" />
+              <path d="M66 56 L92 76" />
+              <path d="M38 36 C42 31 49 29 56 32" />
+            </svg>
+            <span>01</span>
+            <h3 data-i18n="approachOneTitle">Pesquisa</h3>
+            <p data-i18n="approachOneText">
+              Investigo necessidades, comportamentos e contexto para separar sintomas de problemas reais.
+            </p>
+          </article>
+          <article class="approach-item reveal">
+            <svg class="process-illustration" viewBox="0 0 120 92" aria-hidden="true">
+              <path d="M18 70 H102" />
+              <path d="M26 64 L46 44 L66 54 L94 24" />
+              <circle class="soft-fill" cx="26" cy="64" r="7" />
+              <circle class="sage-fill" cx="46" cy="44" r="7" />
+              <circle class="soft-fill" cx="66" cy="54" r="7" />
+              <circle class="sage-fill" cx="94" cy="24" r="7" />
+            </svg>
+            <span>02</span>
+            <h3 data-i18n="approachTwoTitle">Estratégia</h3>
+            <p data-i18n="approachTwoText">
+              Conecto descobertas, objetivos de negócio e prioridades para definir caminhos viáveis de produto.
+            </p>
+          </article>
+          <article class="approach-item reveal">
+            <svg class="process-illustration" viewBox="0 0 120 92" aria-hidden="true">
+              <rect x="20" y="18" width="80" height="56" rx="7" />
+              <path d="M20 34 H100" />
+              <circle class="soft-fill" cx="32" cy="26" r="3.5" />
+              <circle class="sage-fill" cx="43" cy="26" r="3.5" />
+              <rect class="soft-fill" x="32" y="46" width="28" height="14" rx="4" />
+              <path d="M68 48 H88" />
+              <path d="M68 58 H82" />
+            </svg>
+            <span>03</span>
+            <h3 data-i18n="approachThreeTitle">Interface</h3>
+            <p data-i18n="approachThreeText">
+              Desenho fluxos e telas que tornam decisões complexas mais simples, úteis e agradáveis.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-wrap split-heading" id="work">
+        <div>
+          <p class="eyebrow reveal" data-i18n="workEyebrow">uma pequena amostra</p>
+          <h2 class="section-title reveal" data-i18n="workTitle">Projetos que merecem aparecer.</h2>
+        </div>
+        <p class="section-copy reveal" data-i18n="workText">
+          Projetos de produto, design conversacional e experiência do usuário.
+        </p>
+      </section>
+
+      <section class="work-grid section-wrap" aria-label="Projetos selecionados" data-i18n-attr="aria-label:workGridLabel">
+        <a class="work-feature work-feature-mai reveal" href="mai.html">
+          <div class="work-info">
+            <p data-i18n="maiType">Conversational design</p>
+            <h3 data-i18n="maiTitle">Mai, do Aprendizap Encceja</h3>
+            <span data-i18n="maiDescription">
+              Assistente virtual no WhatsApp para apoiar estudantes na preparação para a prova do Encceja.
+            </span>
+            <span class="project-link" data-i18n="projectCta">Ver projeto</span>
+          </div>
+          <div class="mai-showcase" aria-label="Capturas da conversa com a assistente virtual Mai no WhatsApp">
+            <span class="phone-frame phone-frame-back">
+              <img src="assets/mai1.png" alt="" />
+            </span>
+            <span class="phone-frame phone-frame-front">
+              <img src="assets/mai2.png" alt="" />
+            </span>
+          </div>
+        </a>
+        <a class="work-feature work-feature-mai reveal" href="marty.html">
+          <div class="work-info">
+            <p data-i18n="martyType">Conversational design</p>
+            <h3>Marty</h3>
+            <span data-i18n="martyDescription">Chatbot para WhatsApp com IA, estratégia conversacional e UX Writing para fluxos de atendimento.</span>
+            <span class="project-link" data-i18n="projectCta">Ver projeto</span>
+          </div>
+          <div class="mai-showcase" aria-label="Capturas do projeto Marty no WhatsApp">
+            <span class="phone-frame phone-frame-back">
+              <img src="assets/marty5.png" alt="" />
+            </span>
+            <span class="phone-frame phone-frame-front">
+              <img src="assets/marty4.png" alt="" />
+            </span>
+          </div>
+        </a>
+        <div class="more-projects reveal">
+          <a class="pill-button" href="projetos.html" data-i18n="moreProjectsCta">Ver mais projetos</a>
+        </div>
+      </section>
+
+      <section class="skills-band" aria-label="Especialidades">
+        <div class="marquee" aria-hidden="true">
+          <span data-i18n="skillProduct">Design de Produto</span>
+          <span>Websites</span>
+          <span data-i18n="skillResearch">Pesquisa</span>
+          <span>UX writing</span>
+          <span>Design systems</span>
+          <span>Storytelling</span>
+        </div>
+      </section>
+
+      <section class="section-wrap publications" id="publications">
+        <p class="eyebrow reveal" data-i18n="publicationsEyebrow">publicações</p>
+        <h2 class="section-title reveal" data-i18n="publicationsTitle">Pesquisa, design e tecnologia em diálogo.</h2>
+        <div class="publication-list">
+          <a
+            class="publication-card reveal"
+            href="https://www.proceedings.blucher.com.br/article-details/cartografias-de-resistncia-mapeamento-de-iniciativas-decoloniais-digitais-no-brasil-por-meio-do-design-da-informao-40180"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span data-i18n="publicationMeta">CIDI 2025 · Blucher Design Proceedings</span>
+            <h3 data-i18n="publicationTitle">Cartografias de resistência: mapeamento de iniciativas decoloniais digitais no Brasil por meio do Design da Informação</h3>
+            <p data-i18n="publicationDescription">
+              Artigo sobre iniciativas brasileiras que utilizam tecnologias digitais como forma de resistência às estruturas coloniais, com o Design da Informação como ferramenta de mapeamento.
+            </p>
+            <strong data-i18n="publicationCta">Ler publicação</strong>
+          </a>
+        </div>
+        <div class="more-projects reveal">
+          <a class="pill-button" href="publicacoes.html">Ver todas as publicações</a>
+        </div>
+      </section>
+
+      <section class="section-wrap about" id="about">
+        <div>
+          <p class="eyebrow reveal" data-i18n="aboutEyebrow">por trás da tela</p>
+          <h2 class="section-title reveal" data-i18n="aboutTitle">Um pouco sobre mim.</h2>
+        </div>
+        <div class="about-copy reveal">
+          <div class="about-portrait">
+            <img class="about-profile" src="assets/amandaprofile2.webp" alt="Foto de Amanda Gomes" data-i18n-attr="alt:aboutImageAlt" />
+          </div>
+          <div class="about-text">
+            <p data-i18n="aboutTextOne">
+              Sou Product Designer no CESAR, criando produtos digitais para web, mobile e chatbots. Minha prática combina pesquisa, estratégia e prototipação para transformar contextos complexos em experiências mais claras.
+            </p>
+            <div class="about-facts" aria-label="Resumo profissional" data-i18n-attr="aria-label:aboutFactsLabel">
+              <span data-i18n="aboutFactOneText">Product Designer @ CESAR</span>
+              <span data-i18n="aboutFactTwoText">MSc student @ UFPE</span>
+            </div>
+            <a class="about-resume" href="curriculo.html" data-i18n="aboutResumeCta">Ver currículo completo</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact section-wrap" id="contact">
+        <p class="eyebrow reveal" data-i18n="contactEyebrow">contato</p>
+        <h2 class="contact-title reveal" data-i18n="contactTitle">
+          Vamos trabalhar juntos?
+        </h2>
+        <div class="contact-actions reveal">
+          <a class="pill-button dark" href="mailto:contato@amandagomes.design" data-i18n="emailCta">Enviar email</a>
+          <div class="social-buttons" aria-label="Links profissionais" data-i18n-attr="aria-label:socialLinksLabel">
+            <a href="https://www.linkedin.com/in/amandagnascimento/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+              <span aria-hidden="true">in</span>
+            </a>
+            <a href="https://www.behance.net/amandagomesdesign" target="_blank" rel="noreferrer" aria-label="Behance">
+              <span aria-hidden="true">Bē</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <span>© 2026 by Amanda Gomes.</span>
+      <div class="language-switcher" aria-label="Selecionar idioma" data-i18n-attr="aria-label:languageLabel">
+        <button class="active" type="button" data-lang="pt" aria-pressed="true">
+          <span aria-hidden="true">🇧🇷</span>
+          <span>PT</span>
+        </button>
+        <button type="button" data-lang="en" aria-pressed="false">
+          <span aria-hidden="true">🇺🇸</span>
+          <span>EN</span>
+        </button>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
