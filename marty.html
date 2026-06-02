@@ -18,6 +18,12 @@
     <style>
       .case-main {
         --case-max: 1120px;
+        overflow-x: clip;
+        overflow-wrap: break-word;
+      }
+
+      .case-main * {
+        min-width: 0;
       }
 
       .case-hero-inner {
@@ -60,6 +66,10 @@
       .case-title span {
         color: var(--accent);
         font-style: italic;
+      }
+
+      .mobile-title-break {
+        display: none;
       }
 
       .case-subtitle {
@@ -906,8 +916,21 @@
       }
 
       @media (max-width: 860px) {
+        .case-hero {
+          min-height: auto;
+          padding-top: clamp(84px, 18vw, 120px);
+        }
+
+        .case-hero-inner {
+          width: min(100%, 100%);
+        }
+
         .case-overview {
           grid-template-columns: 1fr;
+        }
+
+        .overview-card {
+          width: 100%;
         }
 
         .context-layout {
@@ -915,25 +938,46 @@
         }
 
         .context-visual {
-          min-height: 360px;
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 14px;
+          min-height: 0;
+          max-width: 540px;
           margin-top: 0;
+          margin-inline: auto;
+          align-items: start;
+        }
+
+        .context-frame {
+          position: static;
+          margin: 0;
+          transform: none;
         }
 
         .context-frame.back {
-          width: min(100%, 280px);
-          left: 24px;
-          top: 0;
+          width: 100%;
         }
 
         .context-frame.front {
-          width: min(100%, 300px);
-          left: 0;
-          top: 84px;
+          width: 100%;
+        }
+
+        .context-visual:hover .context-frame.back,
+        .context-visual:hover .context-frame.front {
+          transform: none;
         }
 
         .case-grid,
         .artifact-grid,
         .learning-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .case-grid,
+        .voice-grid,
+        .artifact-grid,
+        .learning-grid,
+        .stats-grid {
           grid-template-columns: 1fr;
         }
 
@@ -986,16 +1030,33 @@
         }
 
         .artifact-visual {
-          min-height: 430px;
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 14px;
+          min-height: 0;
+          max-width: 640px;
+          margin-inline: auto;
+          align-items: start;
         }
 
         .artifact-notes {
           grid-template-columns: 1fr;
         }
 
+        .artifact-frame {
+          position: static;
+          width: 100%;
+          margin: 0;
+          transform: none;
+        }
+
         .artifact-frame.front {
-          left: 74px;
-          top: 92px;
+          width: 100%;
+        }
+
+        .artifact-visual:hover .artifact-frame.back,
+        .artifact-visual:hover .artifact-frame.front {
+          transform: none;
         }
 
         footer {
@@ -1004,59 +1065,151 @@
       }
 
       @media (max-width: 560px) {
+        .case-hero {
+          padding: 92px 12px 52px;
+        }
+
+        .case-hero-inner {
+          width: 100%;
+        }
+
         .case-title {
-          font-size: clamp(2.8rem, 13vw, 3.8rem);
+          width: 100%;
+          max-width: calc(100vw - 24px);
+          font-size: clamp(2.1rem, 10vw, 2.75rem);
+          line-height: 0.98;
+          overflow-wrap: anywhere;
+        }
+
+        .mobile-title-break {
+          display: block;
+        }
+
+        .case-subtitle {
+          max-width: calc(100vw - 24px);
+          font-size: 1rem;
+          margin-top: 18px;
+          overflow-wrap: anywhere;
+        }
+
+        .case-tags {
+          max-width: calc(100vw - 24px);
+          flex-direction: column;
+          gap: 6px;
+          margin-top: 20px;
+        }
+
+        .case-tags span {
+          font-size: 0.68rem;
+          overflow-wrap: anywhere;
+        }
+
+        .case-tags span::after {
+          display: none;
         }
 
         .case-section {
-          width: min(100% - 24px, var(--case-max));
+          width: min(100% - 20px, var(--case-max));
+          padding: 54px 0;
+        }
+
+        .case-section-header {
+          margin-bottom: 26px;
+        }
+
+        .case-section-title {
+          font-size: clamp(1.8rem, 9vw, 2.7rem);
+        }
+
+        .case-section-description {
+          font-size: 0.98rem;
+        }
+
+        .context-visual {
+          grid-template-columns: 1fr;
+          gap: 12px;
+          max-width: 260px;
+        }
+
+        .context-frame.back {
+          width: 100%;
+        }
+
+        .context-frame.front {
+          width: 100%;
+        }
+
+        .artifact-visual {
+          grid-template-columns: 1fr;
+          gap: 12px;
+          max-width: 300px;
+          margin-bottom: 28px;
+        }
+
+        .artifact-frame.back {
+          width: 100%;
+        }
+
+        .artifact-frame.front {
+          width: 100%;
+        }
+
+        .voice-scale {
+          gap: 18px;
+        }
+
+        .voice-card,
+        .artifact-card,
+        .learning-card,
+        .timeline-item {
+          padding: 18px;
         }
       }
     </style>
   </head>
   <body>
-    <header class="site-header" aria-label="Navegacao principal">
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Abrir menu">
+    <header class="site-header" aria-label="Navegacao principal" data-i18n-attr="aria-label:navLabel">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Abrir menu" data-i18n-attr="aria-label:menuOpenLabel">
         <span></span><span></span><span></span>
       </button>
       <nav id="site-nav">
-        <a href="index.html#top">home</a>
-        <a href="projetos.html">projetos</a>
-        <a href="publicacoes.html">publicações</a>
-        <a href="curriculo.html">sobre</a>
-        <a href="index.html#contact">contato</a>
+        <a href="index.html#top" data-i18n="navHome">home</a>
+        <a href="projetos.html" data-i18n="navProjects">projetos</a>
+        <a href="publicacoes.html" data-i18n="navPublications">publicações</a>
+        <a href="curriculo.html" data-i18n="navAbout">sobre</a>
+        <a href="index.html#contact" data-i18n="navContact">contato</a>
       </nav>
     </header>
 
     <main class="case-main">
       <section class="case-hero">
         <div class="case-hero-inner">
-          <p class="case-label reveal">Design conversacional</p>
-          <h1 class="case-title reveal"><span>Marty</span>, da Campus Party Nordeste.</h1>
-          <p class="case-subtitle reveal">
+          <p class="case-label reveal" data-i18n="martyCaseLabel">Design conversacional</p>
+          <h1 class="case-title reveal" data-i18n-html="martyCaseTitle"><span>Marty</span>, da <br class="mobile-title-break" />Campus Party <br class="mobile-title-break" />Nordeste.</h1>
+          <p class="case-subtitle reveal" data-i18n="martyCaseSubtitle">
             Um bot não oficial para ajudar campuseiros da Campus Party Nordeste 2024 a encontrar informações sobre programação, dúvidas gerais e contexto do evento.
           </p>
           <div class="case-tags reveal">
-            <span>Design Conversacional</span>
-            <span>UX Writing</span>
-            <span>Tom de Voz</span>
-            <span>IA Generativa</span>
+            <span data-i18n="martyCaseTagOne">Design Conversacional</span>
+            <span data-i18n="martyCaseTagTwo">UX Writing</span>
+            <span data-i18n="martyCaseTagThree">Tom de Voz</span>
+            <span data-i18n="martyCaseTagFour">IA Generativa</span>
           </div>
           <div class="case-overview reveal">
             <article class="overview-card">
-              <span>Cliente</span>
+              <span data-i18n="caseClientLabel">Cliente</span>
               <h3>Campus Party NE</h3>
-              <p>Assistente virtual criado para apoiar participantes durante a Campus Party Nordeste 2024.</p>
+              <p data-i18n="martyOverviewClient">Assistente virtual criado para apoiar participantes durante a Campus Party Nordeste 2024.</p>
             </article>
             <article class="overview-card">
-              <span>Ano do projeto</span>
+              <span data-i18n="caseYearLabel">Ano do projeto</span>
               <h3>2024</h3>
-              <p>Projeto desenvolvido para a edição Nordeste da Campus Party.</p>
+              <p data-i18n="martyOverviewYear">Projeto desenvolvido para a edição Nordeste da Campus Party.</p>
             </article>
             <article class="overview-card">
-              <span>Objetivo</span>
-              <h3>Orientar no evento</h3>
-              <p>Responder dúvidas com rapidez, contexto e uma voz coerente com a comunidade do evento.</p>
+              <span data-i18n="caseGoalLabel">Objetivo</span>
+              <h3 data-i18n="martyOverviewGoalTitle">Orientar no evento</h3>
+              <p data-i18n="martyOverviewGoal">Responder dúvidas com rapidez, contexto e uma voz coerente com a comunidade do evento.</p>
             </article>
           </div>
         </div>
@@ -1064,34 +1217,34 @@
 
       <section class="case-section alt">
         <div class="context-layout">
-          <div class="context-visual reveal" aria-label="Capturas do Marty no WhatsApp">
+          <div class="context-visual reveal" aria-label="Capturas do Marty no WhatsApp" data-i18n-attr="aria-label:martyContextVisualLabel">
             <figure class="context-frame back">
-              <img src="assets/marty5.png" alt="Captura do Marty no WhatsApp 1" />
+              <img src="assets/marty5.png" alt="Captura do Marty no WhatsApp 1" data-i18n-attr="alt:martyContextImageOneAlt" />
             </figure>
             <figure class="context-frame front">
-              <img src="assets/marty4.png" alt="Captura do Marty no WhatsApp 2" />
+              <img src="assets/marty4.png" alt="Captura do Marty no WhatsApp 2" data-i18n-attr="alt:martyContextImageTwoAlt" />
             </figure>
           </div>
 
           <div class="context-copy">
             <div class="case-section-header reveal" style="margin: 0;">
-              <p class="case-section-label">Contexto</p>
-              <h2 class="case-section-title">Contexto do projeto.</h2>
-              <p class="case-section-description">
+              <p class="case-section-label" data-i18n="caseContextLabel">Contexto</p>
+              <h2 class="case-section-title" data-i18n="caseContextTitle">Contexto do projeto.</h2>
+              <p class="case-section-description" data-i18n="martyContextDescription">
                 Marty foi desenvolvido como um chatbot para WhatsApp voltado a responder dúvidas sobre a Campus Party Nordeste 2024, com base em cronograma, FAQ e orientações sobre o evento.
               </p>
             </div>
 
             <div class="context-cards">
               <article class="case-card context-card reveal">
-                <h3>Desafio</h3>
-                <p>
+                <h3 data-i18n="caseChallengeTitle">Desafio</h3>
+                <p data-i18n="martyChallengeText">
                   Oferecer informações úteis para quem estava no evento, sem depender de buscas longas no site ou em redes sociais.
                 </p>
               </article>
               <article class="case-card context-card reveal">
-                <h3>Solução</h3>
-                <p>
+                <h3 data-i18n="caseSolutionTitle">Solução</h3>
+                <p data-i18n="martySolutionText">
                   Estruturar o bot com base no cronograma, na FAQ e em temas descobertos durante o uso, mantendo clareza no atendimento.
                 </p>
               </article>
@@ -1102,85 +1255,85 @@
 
       <section class="case-section">
         <div class="case-section-header reveal">
-          <p class="case-section-label">Tom de voz</p>
-          <h2 class="case-section-title">Como Marty deveria soar.</h2>
-              <p class="case-section-description">
+          <p class="case-section-label" data-i18n="martyVoiceLabel">Tom de voz</p>
+          <h2 class="case-section-title" data-i18n="martyVoiceTitle">Como Marty deveria soar.</h2>
+              <p class="case-section-description" data-i18n-html="martyVoiceDescription">
             A voz foi definida a partir do material <a href="https://www.nngroup.com/articles/tone-of-voice-dimensions/" target="_blank" rel="noreferrer">The Four Dimensions of Tone of Voice</a>, da Nielsen Norman Group, e refinada para deixar o bot próximo, leve e útil em qualquer dúvida.
               </p>
         </div>
 
-        <div class="voice-scale reveal" aria-label="Escala de tom de voz">
+        <div class="voice-scale reveal" aria-label="Escala de tom de voz" data-i18n-attr="aria-label:martyVoiceScaleLabel">
           <div class="voice-scale-row casual">
-            <div class="voice-scale-label">Formal</div>
+            <div class="voice-scale-label" data-i18n="martyVoiceFormal">Formal</div>
             <div class="voice-scale-bar">
               <span class="voice-scale-track"></span>
               <span class="voice-scale-end left"></span>
               <span class="voice-scale-end right"></span>
               <span class="voice-scale-marker"><img src="assets/marty.png" alt="" aria-hidden="true" /></span>
             </div>
-            <div class="voice-scale-label right">Casual</div>
+            <div class="voice-scale-label right" data-i18n="martyVoiceCasual">Casual</div>
           </div>
           <div class="voice-scale-row divertido">
-            <div class="voice-scale-label">Sério</div>
+            <div class="voice-scale-label" data-i18n="martyVoiceSerious">Sério</div>
             <div class="voice-scale-bar">
               <span class="voice-scale-track"></span>
               <span class="voice-scale-end left"></span>
               <span class="voice-scale-end right"></span>
               <span class="voice-scale-marker"><img src="assets/marty.png" alt="" aria-hidden="true" /></span>
             </div>
-            <div class="voice-scale-label right">Divertido</div>
+            <div class="voice-scale-label right" data-i18n="martyVoiceFun">Divertido</div>
           </div>
           <div class="voice-scale-row irreverente">
-            <div class="voice-scale-label">Respeitoso</div>
+            <div class="voice-scale-label" data-i18n="martyVoiceRespectful">Respeitoso</div>
             <div class="voice-scale-bar">
               <span class="voice-scale-track"></span>
               <span class="voice-scale-end left"></span>
               <span class="voice-scale-end right"></span>
               <span class="voice-scale-marker"><img src="assets/marty.png" alt="" aria-hidden="true" /></span>
             </div>
-            <div class="voice-scale-label right">Irreverente</div>
+            <div class="voice-scale-label right" data-i18n="martyVoiceIrreverent">Irreverente</div>
           </div>
           <div class="voice-scale-row entusiastico">
-            <div class="voice-scale-label">Direto</div>
+            <div class="voice-scale-label" data-i18n="martyVoiceDirect">Direto</div>
             <div class="voice-scale-bar">
               <span class="voice-scale-track"></span>
               <span class="voice-scale-end left"></span>
               <span class="voice-scale-end right"></span>
               <span class="voice-scale-marker"><img src="assets/marty.png" alt="" aria-hidden="true" /></span>
             </div>
-            <div class="voice-scale-label right">Entusiástico</div>
+            <div class="voice-scale-label right" data-i18n="martyVoiceEnthusiastic">Entusiástico</div>
           </div>
         </div>
 
         <div class="voice-grid">
           <article class="voice-card reveal">
-            <strong>Casual</strong>
-            <h3>Próximo e fácil de entender</h3>
-            <p>Informal e acessível, criando proximidade com os usuários e evitando uma comunicação engessada.</p>
+            <strong data-i18n="martyVoiceCasual">Casual</strong>
+            <h3 data-i18n="martyVoiceCardOneTitle">Próximo e fácil de entender</h3>
+            <p data-i18n="martyVoiceCardOneText">Informal e acessível, criando proximidade com os usuários e evitando uma comunicação engessada.</p>
           </article>
           <article class="voice-card reveal">
-            <strong>Divertido</strong>
-            <h3>Leve sem perder utilidade</h3>
-            <p>Referências culturais e elementos de cultura pop ajudam a manter a conversa leve e envolvente.</p>
+            <strong data-i18n="martyVoiceFun">Divertido</strong>
+            <h3 data-i18n="martyVoiceCardTwoTitle">Leve sem perder utilidade</h3>
+            <p data-i18n="martyVoiceCardTwoText">Referências culturais e elementos de cultura pop ajudam a manter a conversa leve e envolvente.</p>
           </article>
           <article class="voice-card reveal">
-            <strong>Irreverente</strong>
-            <h3>Com humor na medida</h3>
-            <p>O tom pode ser mais solto e bem-humorado quando fizer sentido, sem perder a confiança da resposta.</p>
+            <strong data-i18n="martyVoiceIrreverent">Irreverente</strong>
+            <h3 data-i18n="martyVoiceCardThreeTitle">Com humor na medida</h3>
+            <p data-i18n="martyVoiceCardThreeText">O tom pode ser mais solto e bem-humorado quando fizer sentido, sem perder a confiança da resposta.</p>
           </article>
           <article class="voice-card reveal">
-            <strong>Entusiástico</strong>
-            <h3>Com energia de evento</h3>
-            <p>Respostas animadas e positivas, reforçando a empolgação do evento e mantendo a orientação clara.</p>
+            <strong data-i18n="martyVoiceEnthusiastic">Entusiástico</strong>
+            <h3 data-i18n="martyVoiceCardFourTitle">Com energia de evento</h3>
+            <p data-i18n="martyVoiceCardFourText">Respostas animadas e positivas, reforçando a empolgação do evento e mantendo a orientação clara.</p>
           </article>
         </div>
       </section>
 
       <section class="case-section">
         <div class="case-section-header reveal">
-          <p class="case-section-label">Design conversacional</p>
-          <h2 class="case-section-title">Nossa linha do tempo.</h2>
-          <p class="case-section-description">
+          <p class="case-section-label" data-i18n="martyTimelineLabel">Design conversacional</p>
+          <h2 class="case-section-title" data-i18n="martyTimelineTitle">Nossa linha do tempo.</h2>
+          <p class="case-section-description" data-i18n="martyTimelineDescription">
             O projeto evoluiu a partir do contexto do chatbot até a integração com os serviços necessários para o funcionamento no WhatsApp.
           </p>
         </div>
@@ -1195,8 +1348,8 @@
               </svg>
             </div>
             <div>
-              <h3>O contexto do chatbot</h3>
-              <p>Definição da necessidade, do canal e do papel do Marty dentro da experiência do evento.</p>
+              <h3 data-i18n="martyTimelineOneTitle">O contexto do chatbot</h3>
+              <p data-i18n="martyTimelineOneText">Definição da necessidade, do canal e do papel do Marty dentro da experiência do evento.</p>
             </div>
           </article>
           <article class="delivery-row reveal">
@@ -1207,8 +1360,8 @@
               </svg>
             </div>
             <div>
-              <h3>Definição de tom de voz</h3>
-              <p>Construção da personalidade do bot com base em casualidade, diversão, irreverência e entusiasmo.</p>
+              <h3 data-i18n="martyTimelineTwoTitle">Definição de tom de voz</h3>
+              <p data-i18n="martyTimelineTwoText">Construção da personalidade do bot com base em casualidade, diversão, irreverência e entusiasmo.</p>
             </div>
           </article>
           <article class="delivery-row reveal">
@@ -1219,8 +1372,8 @@
               </svg>
             </div>
             <div>
-              <h3>Configuração do número no WhatsApp Business</h3>
-              <p>Organização do canal de entrada para que o bot pudesse operar dentro do fluxo esperado.</p>
+              <h3 data-i18n="martyTimelineThreeTitle">Configuração do número no WhatsApp Business</h3>
+              <p data-i18n="martyTimelineThreeText">Organização do canal de entrada para que o bot pudesse operar dentro do fluxo esperado.</p>
             </div>
           </article>
           <article class="delivery-row reveal">
@@ -1231,8 +1384,8 @@
               </svg>
             </div>
             <div>
-              <h3>Configuração da infra em cloud</h3>
-              <p>Preparação da base técnica para hospedar e sustentar a operação do assistente.</p>
+              <h3 data-i18n="martyTimelineFourTitle">Configuração da infra em cloud</h3>
+              <p data-i18n="martyTimelineFourText">Preparação da base técnica para hospedar e sustentar a operação do assistente.</p>
             </div>
           </article>
           <article class="delivery-row reveal">
@@ -1244,8 +1397,8 @@
               </svg>
             </div>
             <div>
-              <h3>Integração da API da OpenAI e WhatsApp Cloud API</h3>
-              <p>Conexão entre o modelo de IA e a interface do WhatsApp para viabilizar o fluxo final da conversa.</p>
+              <h3 data-i18n="martyTimelineFiveTitle">Integração da API da OpenAI e WhatsApp Cloud API</h3>
+              <p data-i18n="martyTimelineFiveText">Conexão entre o modelo de IA e a interface do WhatsApp para viabilizar o fluxo final da conversa.</p>
             </div>
           </article>
         </div>
@@ -1253,38 +1406,38 @@
 
       <section class="case-section alt">
         <div class="case-section-header reveal">
-          <p class="case-section-label">Artefatos de design</p>
-          <h2 class="case-section-title">O que precisou ser desenhado.</h2>
-          <p class="case-section-description">
+          <p class="case-section-label" data-i18n="martyArtifactsLabel">Artefatos de design</p>
+          <h2 class="case-section-title" data-i18n="martyArtifactsTitle">O que precisou ser desenhado.</h2>
+          <p class="case-section-description" data-i18n="martyArtifactsDescription">
             Os artefatos abaixo mostram como o conteúdo foi sendo ampliado ao longo do uso, incorporando novas dúvidas, respostas e temas que não estavam previstos na primeira versão.
           </p>
         </div>
 
         <div class="artifact-layout">
-          <div class="artifact-visual reveal" aria-label="Artefatos visuais do Marty">
+          <div class="artifact-visual reveal" aria-label="Artefatos visuais do Marty" data-i18n-attr="aria-label:martyArtifactsVisualLabel">
             <figure class="artifact-frame back">
-              <img src="assets/marty2.png" alt="Captura de uma versão intermediária do Marty com conteúdo expandido" />
+              <img src="assets/marty2.png" alt="Captura de uma versão intermediária do Marty com conteúdo expandido" data-i18n-attr="alt:martyArtifactImageOneAlt" />
             </figure>
             <figure class="artifact-frame front">
-              <img src="assets/marty3.png" alt="Captura de uma versão do Marty com ajustes de conteúdo e respostas" />
+              <img src="assets/marty3.png" alt="Captura de uma versão do Marty com ajustes de conteúdo e respostas" data-i18n-attr="alt:martyArtifactImageTwoAlt" />
             </figure>
           </div>
 
           <div class="artifact-notes">
             <article class="artifact-note reveal">
-              <p class="artifact-kicker">Conteúdo</p>
-              <h3>Expansão do conteúdo</h3>
-              <p>O conjunto de respostas foi ampliado com informações que passaram a aparecer com mais frequência durante o evento.</p>
+              <p class="artifact-kicker" data-i18n="martyArtifactOneKicker">Conteúdo</p>
+              <h3 data-i18n="martyArtifactOneTitle">Expansão do conteúdo</h3>
+              <p data-i18n="martyArtifactOneText">O conjunto de respostas foi ampliado com informações que passaram a aparecer com mais frequência durante o evento.</p>
             </article>
             <article class="artifact-note reveal">
-              <p class="artifact-kicker">Uso real</p>
-              <h3>Evolução por uso</h3>
-              <p>As interações reais ajudaram a identificar lacunas, ajustar a priorização de temas e refinar o conteúdo disponível.</p>
+              <p class="artifact-kicker" data-i18n="martyArtifactTwoKicker">Uso real</p>
+              <h3 data-i18n="martyArtifactTwoTitle">Evolução por uso</h3>
+              <p data-i18n="martyArtifactTwoText">As interações reais ajudaram a identificar lacunas, ajustar a priorização de temas e refinar o conteúdo disponível.</p>
             </article>
             <article class="artifact-note reveal">
-              <p class="artifact-kicker">Base</p>
-              <h3>Base de conhecimento</h3>
-              <p>Estruturação das informações essenciais do evento, incluindo cronograma, FAQ e orientações práticas para o usuário.</p>
+              <p class="artifact-kicker" data-i18n="martyArtifactThreeKicker">Base</p>
+              <h3 data-i18n="martyArtifactThreeTitle">Base de conhecimento</h3>
+              <p data-i18n="martyArtifactThreeText">Estruturação das informações essenciais do evento, incluindo cronograma, FAQ e orientações práticas para o usuário.</p>
             </article>
           </div>
         </div>
@@ -1293,9 +1446,9 @@
       <section class="case-section">
         <div class="learning-section-split">
           <div class="case-section-header reveal learning-summary">
-            <p class="case-section-label">Aprendizados</p>
-            <h2 class="case-section-title">O que esse projeto reforçou.</h2>
-            <p>
+            <p class="case-section-label" data-i18n="martyLearningsLabel">Aprendizados</p>
+            <h2 class="case-section-title" data-i18n="martyLearningsTitle">O que esse projeto reforçou.</h2>
+            <p data-i18n="martyLearningsDescription">
               A principal aprendizagem foi que o conteúdo do bot não poderia ficar fechado na FAQ inicial. O uso real trouxe temas novos, ajustou prioridades e mostrou que tom, contexto e síntese precisam caminhar juntos.
             </p>
           </div>
@@ -1311,8 +1464,8 @@
                 </svg>
               </div>
               <div>
-                <h3>Tom de voz também é interface</h3>
-                <p>A forma como o bot responde interfere diretamente na confiança, na clareza e na continuidade da conversa.</p>
+                <h3 data-i18n="martyLearningOneTitle">Tom de voz também é interface</h3>
+                <p data-i18n="martyLearningOneText">A forma como o bot responde interfere diretamente na confiança, na clareza e na continuidade da conversa.</p>
               </div>
             </article>
             <article class="learning-row reveal">
@@ -1325,8 +1478,8 @@
                 </svg>
               </div>
               <div>
-                <h3>IA precisa de direção</h3>
-                <p>O resultado melhora quando há boas instruções, contexto, limites e exemplos de comportamento esperado.</p>
+                <h3 data-i18n="martyLearningTwoTitle">IA precisa de direção</h3>
+                <p data-i18n="martyLearningTwoText">O resultado melhora quando há boas instruções, contexto, limites e exemplos de comportamento esperado.</p>
               </div>
             </article>
             <article class="learning-row reveal">
@@ -1339,8 +1492,8 @@
                 </svg>
               </div>
               <div>
-                <h3>FAQ nunca nasce completa</h3>
-                <p>As perguntas reais revelam lacunas de conteúdo e indicam o que precisa entrar primeiro na base de respostas.</p>
+                <h3 data-i18n="martyLearningThreeTitle">FAQ nunca nasce completa</h3>
+                <p data-i18n="martyLearningThreeText">As perguntas reais revelam lacunas de conteúdo e indicam o que precisa entrar primeiro na base de respostas.</p>
               </div>
             </article>
             <article class="learning-row reveal">
@@ -1352,8 +1505,8 @@
                 </svg>
               </div>
               <div>
-                <h3>WhatsApp pede síntese</h3>
-                <p>Respostas longas ou muito formais quebram o ritmo. O canal pede clareza e resposta rápida.</p>
+                <h3 data-i18n="martyLearningFourTitle">WhatsApp pede síntese</h3>
+                <p data-i18n="martyLearningFourText">Respostas longas ou muito formais quebram o ritmo. O canal pede clareza e resposta rápida.</p>
               </div>
             </article>
             </div>
@@ -1363,7 +1516,7 @@
     </main>
 
     <footer>
-      <span>© 2026 by Amanda Gomes.</span>
+      <span data-i18n="footerCopyright">© 2026 by Amanda Gomes.</span>
       <div class="language-switcher" aria-label="Selecionar idioma" data-i18n-attr="aria-label:languageLabel">
         <button class="active" type="button" data-lang="pt" aria-pressed="true">
           <span aria-hidden="true">🇧🇷</span>

@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Projetos | Amanda Gomes</title>
+    <title data-i18n="projectsPageTitle">Projetos | Amanda Gomes</title>
     <meta
       name="description"
       content="Projetos de Amanda Gomes em design de produto, interfaces conversacionais e experiência do usuário."
+      data-i18n-attr="content:projectsPageDescription"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,61 +18,61 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="site-header">
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Abrir menu">
+    <header class="site-header" aria-label="Navegacao principal" data-i18n-attr="aria-label:navLabel">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Abrir menu" data-i18n-attr="aria-label:menuOpenLabel">
         <span></span><span></span><span></span>
       </button>
       <nav id="site-nav">
-        <a href="index.html#top">home</a>
-        <a href="projetos.html">projetos</a>
-        <a href="publicacoes.html">publicações</a>
-        <a href="curriculo.html">sobre</a>
-        <a href="index.html#contact">contato</a>
+        <a href="index.html#top" data-i18n="navHome">home</a>
+        <a href="projetos.html" data-i18n="navProjects">projetos</a>
+        <a href="publicacoes.html" data-i18n="navPublications">publicações</a>
+        <a href="curriculo.html" data-i18n="navAbout">sobre</a>
+        <a href="index.html#contact" data-i18n="navContact">contato</a>
       </nav>
     </header>
 
     <main>
       <section class="section-wrap split-heading" style="padding-top: clamp(120px, 14vw, 180px)">
         <div>
-          <p class="eyebrow">projetos</p>
-          <h1 class="section-title">Projetos em destaque.</h1>
+          <p class="eyebrow" data-i18n="projectsPageEyebrow">projetos</p>
+          <h1 class="section-title" data-i18n="projectsPageHeading">Projetos em destaque.</h1>
         </div>
-        <p class="section-copy">
+        <p class="section-copy" data-i18n="projectsPageIntro">
           Cases de design conversacional com foco em clareza, conteúdo e experiência do usuário.
         </p>
       </section>
 
-      <section class="work-grid section-wrap" aria-label="Todos os projetos">
+      <section class="work-grid section-wrap" aria-label="Todos os projetos" data-i18n-attr="aria-label:projectsPageGridLabel">
         <a class="work-feature work-feature-mai" href="mai.html">
           <div class="work-info">
-            <p>Design conversacional</p>
-            <h3>Mai, do Aprendizap Encceja</h3>
-            <span>Chatbot para WhatsApp criado para apoiar estudantes do Encceja com conteúdo de estudo e orientação prática.</span>
-            <span class="project-link">Ver projeto</span>
+            <p data-i18n="maiType">Design conversacional</p>
+            <h3 data-i18n="maiTitle">Mai, do Aprendizap Encceja</h3>
+            <span data-i18n="maiDescription">Chatbot para WhatsApp criado para apoiar estudantes do Encceja com conteúdo de estudo e orientação prática.</span>
+            <span class="project-link" data-i18n="projectCta">Ver projeto</span>
           </div>
-          <div class="mai-showcase" aria-label="Capturas da conversa com a assistente virtual Mai no WhatsApp">
+          <div class="mai-showcase" aria-label="Capturas da conversa com a assistente virtual Mai no WhatsApp" data-i18n-attr="aria-label:maiContextVisualLabel">
             <span class="phone-frame phone-frame-back">
-              <img src="assets/mai1.png" alt="" />
+              <img src="assets/mai1.png" alt="" data-i18n-attr="alt:maiContextImageOneAlt" />
             </span>
             <span class="phone-frame phone-frame-front">
-              <img src="assets/mai2.png" alt="" />
+              <img src="assets/mai2.png" alt="" data-i18n-attr="alt:maiContextImageTwoAlt" />
             </span>
           </div>
         </a>
 
         <a class="work-feature work-feature-mai" href="marty.html">
           <div class="work-info">
-            <p>Design conversacional</p>
+            <p data-i18n="martyType">Design conversacional</p>
             <h3>Marty</h3>
-            <span>Assistente conversacional não oficial da Campus Party Nordeste 2024, criado para responder dúvidas no WhatsApp.</span>
-            <span class="project-link">Ver projeto</span>
+            <span data-i18n="martyDescription">Assistente conversacional não oficial da Campus Party Nordeste 2024, criado para responder dúvidas no WhatsApp.</span>
+            <span class="project-link" data-i18n="projectCta">Ver projeto</span>
           </div>
-          <div class="mai-showcase" aria-label="Capturas do projeto Marty no WhatsApp">
+          <div class="mai-showcase" aria-label="Capturas do projeto Marty no WhatsApp" data-i18n-attr="aria-label:martyContextVisualLabel">
             <span class="phone-frame phone-frame-back">
-              <img src="assets/marty5.png" alt="" />
+              <img src="assets/marty5.png" alt="" data-i18n-attr="alt:martyContextImageOneAlt" />
             </span>
             <span class="phone-frame phone-frame-front">
-              <img src="assets/marty4.png" alt="" />
+              <img src="assets/marty4.png" alt="" data-i18n-attr="alt:martyContextImageTwoAlt" />
             </span>
           </div>
         </a>
@@ -79,8 +80,8 @@
     </main>
 
     <footer>
-      <span>© 2026 by Amanda Gomes.</span>
-      <div class="language-switcher" aria-label="Selecionar idioma">
+      <span data-i18n="footerCopyright">© 2026 by Amanda Gomes.</span>
+      <div class="language-switcher" aria-label="Selecionar idioma" data-i18n-attr="aria-label:languageLabel">
         <button class="active" type="button" data-lang="pt" aria-pressed="true">
           <span aria-hidden="true">🇧🇷</span>
           <span>PT</span>

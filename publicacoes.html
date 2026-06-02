@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Publicacoes | Amanda Gomes</title>
+    <title data-i18n="publicationsPageTitle">Publicacoes | Amanda Gomes</title>
     <meta
       name="description"
       content="Publicacoes de Amanda Gomes sobre design da informacao, pesquisa e tecnologia."
+      data-i18n-attr="content:publicationsPageDescription"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,31 +18,31 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header class="site-header" aria-label="Navegacao principal">
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Abrir menu">
+    <header class="site-header" aria-label="Navegacao principal" data-i18n-attr="aria-label:navLabel">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Abrir menu" data-i18n-attr="aria-label:menuOpenLabel">
         <span></span><span></span><span></span>
       </button>
       <nav id="site-nav">
-        <a href="index.html#top">home</a>
-        <a href="projetos.html">projetos</a>
-        <a href="publicacoes.html">publicações</a>
-        <a href="curriculo.html">sobre</a>
-        <a href="index.html#contact">contato</a>
+        <a href="index.html#top" data-i18n="navHome">home</a>
+        <a href="projetos.html" data-i18n="navProjects">projetos</a>
+        <a href="publicacoes.html" data-i18n="navPublications">publicações</a>
+        <a href="curriculo.html" data-i18n="navAbout">sobre</a>
+        <a href="index.html#contact" data-i18n="navContact">contato</a>
       </nav>
     </header>
 
     <main>
       <section class="section-wrap split-heading" style="padding-top: clamp(120px, 14vw, 180px)">
         <div>
-          <p class="eyebrow">publicações</p>
-          <h1 class="section-title">Pesquisa, design e tecnologia.</h1>
+          <p class="eyebrow" data-i18n="publicationsEyebrow">publicações</p>
+          <h1 class="section-title" data-i18n="publicationsPageHeading">Pesquisa, design e tecnologia.</h1>
         </div>
-        <p class="section-copy">
+        <p class="section-copy" data-i18n="publicationsPageIntro">
           Produções acadêmicas e textos que conectam design da informação, tecnologia e contexto social.
         </p>
       </section>
 
-      <section class="section-wrap publications" aria-label="Lista de publicações">
+      <section class="section-wrap publications" aria-label="Lista de publicações" data-i18n-attr="aria-label:publicationsListLabel">
         <div class="publication-list">
           <a
             class="publication-card reveal"
@@ -49,21 +50,21 @@
             target="_blank"
             rel="noreferrer"
           >
-            <span>CIDI 2025 · Blucher Design Proceedings</span>
-            <h3>Cartografias de resistência: mapeamento de iniciativas decoloniais digitais no Brasil por meio do Design da Informação</h3>
-            <p>
+            <span data-i18n="publicationMeta">CIDI 2025 · Blucher Design Proceedings</span>
+            <h3 data-i18n="publicationTitle">Cartografias de resistência: mapeamento de iniciativas decoloniais digitais no Brasil por meio do Design da Informação</h3>
+            <p data-i18n="publicationDescription">
               Artigo sobre iniciativas brasileiras que utilizam tecnologias digitais como forma de resistência às estruturas coloniais,
               com o Design da Informação como ferramenta de mapeamento.
             </p>
-            <strong>Ler publicação</strong>
+            <strong data-i18n="publicationCta">Ler publicação</strong>
           </a>
         </div>
       </section>
     </main>
 
     <footer>
-      <span>© 2026 by Amanda Gomes.</span>
-      <div class="language-switcher" aria-label="Selecionar idioma">
+      <span data-i18n="footerCopyright">© 2026 by Amanda Gomes.</span>
+      <div class="language-switcher" aria-label="Selecionar idioma" data-i18n-attr="aria-label:languageLabel">
         <button class="active" type="button" data-lang="pt" aria-pressed="true">
           <span aria-hidden="true">🇧🇷</span>
           <span>PT</span>

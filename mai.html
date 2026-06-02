@@ -18,6 +18,12 @@
     <style>
       .case-main {
         --case-max: 1120px;
+        overflow-x: clip;
+        overflow-wrap: break-word;
+      }
+
+      .case-main * {
+        min-width: 0;
       }
 
       .case-hero {
@@ -60,6 +66,10 @@
       .case-title span {
         color: var(--accent);
         font-style: italic;
+      }
+
+      .mobile-title-break {
+        display: none;
       }
 
       .case-subtitle {
@@ -763,6 +773,31 @@
       }
 
       @media (max-width: 900px) {
+        .case-hero {
+          min-height: auto;
+          padding-top: clamp(84px, 18vw, 120px);
+        }
+
+        .case-hero-inner {
+          width: min(100%, 100%);
+        }
+
+        .case-overview {
+          grid-template-columns: 1fr;
+        }
+
+        .overview-card {
+          width: 100%;
+        }
+
+        .case-grid,
+        .persona-grid,
+        .feature-grid,
+        .learning-grid,
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
         .timeline-item {
           grid-template-columns: 56px minmax(0, 1fr);
           gap: 16px;
@@ -784,6 +819,39 @@
         .mai-preview figure:last-child {
           transform: none;
         }
+
+        .voice-scale-row {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+
+        .voice-scale-label {
+          text-align: left;
+        }
+
+        .voice-scale-label.right {
+          text-align: left;
+        }
+
+        .artifact-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .artifact-visual {
+          min-height: 440px;
+        }
+
+        .artifact-notes {
+          grid-template-columns: 1fr;
+        }
+
+        .delivery-section-split {
+          grid-template-columns: 1fr;
+        }
+
+        .delivery-section-split .case-section-header {
+          position: static;
+        }
       }
 
       .case-footer {
@@ -804,17 +872,32 @@
         }
 
         .context-visual {
-          min-height: 380px;
-          max-width: 420px;
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 14px;
+          min-height: 0;
+          max-width: 520px;
           margin-inline: auto;
+          align-items: start;
+        }
+
+        .context-frame {
+          position: static;
+          margin: 0;
+          transform: none;
         }
 
         .context-frame.back {
-          left: 64px;
+          width: 100%;
         }
 
         .context-frame.front {
-          top: 66px;
+          width: 100%;
+        }
+
+        .context-visual:hover .context-frame.back,
+        .context-visual:hover .context-frame.front {
+          transform: none;
         }
 
         .context-copy {
@@ -824,14 +907,6 @@
         .context-card {
           grid-template-columns: 1fr;
           gap: 8px;
-        }
-
-        .case-grid,
-        .persona-grid,
-        .feature-grid,
-        .learning-grid,
-        .stats-grid {
-          grid-template-columns: 1fr;
         }
 
         .timeline-item {
@@ -850,80 +925,149 @@
         .process-grid {
           grid-template-columns: 1fr;
         }
+
+        .flow-summary-grid {
+          grid-template-columns: 1fr;
+        }
       }
 
       @media (max-width: 560px) {
+        .case-hero {
+          padding: 92px 12px 52px;
+        }
+
+        .case-hero-inner {
+          width: 100%;
+        }
+
         .case-title {
-          font-size: clamp(3.1rem, 16vw, 4.5rem);
+          width: 100%;
+          max-width: calc(100vw - 24px);
+          font-size: clamp(2.15rem, 10.5vw, 2.85rem);
+          line-height: 0.98;
+          overflow-wrap: anywhere;
         }
 
-        .context-visual {
-          min-height: 320px;
+        .mobile-title-break {
+          display: block;
         }
 
-        .context-frame.back {
-          width: min(100%, 220px);
-          left: 42px;
+        .case-subtitle {
+          max-width: calc(100vw - 24px);
+          font-size: 1rem;
+          margin-top: 18px;
+          overflow-wrap: anywhere;
         }
 
-        .context-frame.front {
-          width: min(100%, 250px);
-          top: 56px;
+        .case-tags {
+          max-width: calc(100vw - 24px);
+          flex-direction: column;
+          gap: 6px;
+          margin-top: 20px;
+        }
+
+        .case-tags span {
+          font-size: 0.68rem;
+          overflow-wrap: anywhere;
+        }
+
+        .case-tags span::after {
+          display: none;
         }
 
         .case-section {
-          width: min(100% - 24px, var(--case-max));
+          width: min(100% - 20px, var(--case-max));
+          padding: 54px 0;
+        }
+
+        .case-section-header {
+          margin-bottom: 26px;
+        }
+
+        .case-section-title {
+          font-size: clamp(1.8rem, 9vw, 2.7rem);
+        }
+
+        .case-section-description {
+          font-size: 0.98rem;
+        }
+
+        .context-visual {
+          grid-template-columns: 1fr;
+          gap: 12px;
+          max-width: 250px;
+        }
+
+        .context-frame.back {
+          width: 100%;
+        }
+
+        .context-frame.front {
+          width: 100%;
         }
 
         .flow-card {
           padding: 16px;
         }
+
+        .flow-card-head {
+          align-items: start;
+        }
+
+        .timeline-item {
+          gap: 12px;
+        }
+
+        .bubble {
+          max-width: 92%;
+          padding: 12px 14px;
+        }
       }
     </style>
   </head>
   <body>
-    <header class="site-header" aria-label="Navegacao principal">
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Abrir menu">
+    <header class="site-header" aria-label="Navegacao principal" data-i18n-attr="aria-label:navLabel">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Abrir menu" data-i18n-attr="aria-label:menuOpenLabel">
         <span></span><span></span><span></span>
       </button>
       <nav id="site-nav">
-        <a href="index.html#top">home</a>
-        <a href="projetos.html">projetos</a>
-        <a href="publicacoes.html">publicações</a>
-        <a href="curriculo.html">sobre</a>
-        <a href="index.html#contact">contato</a>
+        <a href="index.html#top" data-i18n="navHome">home</a>
+        <a href="projetos.html" data-i18n="navProjects">projetos</a>
+        <a href="publicacoes.html" data-i18n="navPublications">publicações</a>
+        <a href="curriculo.html" data-i18n="navAbout">sobre</a>
+        <a href="index.html#contact" data-i18n="navContact">contato</a>
       </nav>
     </header>
 
     <main class="case-main">
       <section class="case-hero">
         <div class="case-hero-inner">
-          <p class="case-label reveal">Design conversacional</p>
-          <h1 class="case-title reveal"><span>Mai</span>, do AprendiZAP Encceja</h1>
-          <p class="case-subtitle reveal">
+          <p class="case-label reveal" data-i18n="maiCaseLabel">Design conversacional</p>
+          <h1 class="case-title reveal" data-i18n-html="maiCaseTitle"><span>Mai</span>, do <br class="mobile-title-break" />AprendiZAP <br class="mobile-title-break" />Encceja</h1>
+          <p class="case-subtitle reveal" data-i18n="maiCaseSubtitle">
             Democratizando o acesso à educação para parceiros iFood através de uma experiência conversacional simples, humana e acessível.
           </p>
           <div class="case-tags reveal">
-            <span>UX Writing</span>
-            <span>Chatbot Design</span>
-            <span>Educação</span>
-            <span>Impacto Social</span>
+            <span data-i18n="maiCaseTagOne">UX Writing</span>
+            <span data-i18n="maiCaseTagTwo">Chatbot Design</span>
+            <span data-i18n="maiCaseTagThree">Educação</span>
+            <span data-i18n="maiCaseTagFour">Impacto Social</span>
           </div>
           <div class="case-overview reveal">
             <article class="overview-card">
-              <span>Cliente</span>
+              <span data-i18n="caseClientLabel">Cliente</span>
               <h3>AprendiZAP</h3>
-              <p>Plataforma de estudos voltada a ampliar o acesso à educação para parceiros do iFood.</p>
+              <p data-i18n="maiOverviewClient">Plataforma de estudos voltada a ampliar o acesso à educação para parceiros do iFood.</p>
             </article>
             <article class="overview-card">
-              <span>Ano do projeto</span>
+              <span data-i18n="caseYearLabel">Ano do projeto</span>
               <h3>2024</h3>
-              <p>Projeto concebido para o contexto de pré-lançamento do assistente conversacional.</p>
+              <p data-i18n="maiOverviewYear">Projeto concebido para o contexto de pré-lançamento do assistente conversacional.</p>
             </article>
             <article class="overview-card">
-              <span>Objetivo</span>
-              <h3>Conduzir a inscrição</h3>
-              <p>Orientar o usuário com uma jornada simples, acolhedora e clara até a lista de espera.</p>
+              <span data-i18n="caseGoalLabel">Objetivo</span>
+              <h3 data-i18n="maiOverviewGoalTitle">Conduzir a inscrição</h3>
+              <p data-i18n="maiOverviewGoal">Orientar o usuário com uma jornada simples, acolhedora e clara até a lista de espera.</p>
             </article>
           </div>
         </div>
@@ -931,34 +1075,34 @@
 
       <section class="case-section">
         <div class="context-layout">
-          <div class="context-visual reveal" aria-label="Capturas da conversa da Mai no WhatsApp">
+          <div class="context-visual reveal" aria-label="Capturas da conversa da Mai no WhatsApp" data-i18n-attr="aria-label:maiContextVisualLabel">
             <figure class="context-frame back">
-              <img src="assets/mai1.png" alt="Captura da conversa da Mai no WhatsApp 1" />
+              <img src="assets/mai1.png" alt="Captura da conversa da Mai no WhatsApp 1" data-i18n-attr="alt:maiContextImageOneAlt" />
             </figure>
             <figure class="context-frame front">
-              <img src="assets/mai2.png" alt="Captura da conversa da Mai no WhatsApp 2" />
+              <img src="assets/mai2.png" alt="Captura da conversa da Mai no WhatsApp 2" data-i18n-attr="alt:maiContextImageTwoAlt" />
             </figure>
           </div>
 
           <div class="context-copy">
             <div class="case-section-header reveal">
-              <p class="case-section-label">Contexto</p>
-              <h2 class="case-section-title">Contexto do projeto.</h2>
-              <p class="case-section-description">
+              <p class="case-section-label" data-i18n="caseContextLabel">Contexto</p>
+              <h2 class="case-section-title" data-i18n="caseContextTitle">Contexto do projeto.</h2>
+              <p class="case-section-description" data-i18n="maiContextDescription">
                 Mai conecta entregadores e parceiros do iFood ao programa Meu Diploma do Ensino Médio, preparando-os para o Encceja por meio de uma jornada personalizada e acolhedora.
               </p>
             </div>
 
             <div class="context-cards">
               <article class="case-card context-card reveal">
-                <h3>Desafio</h3>
-                <p>
+                <h3 data-i18n="caseChallengeTitle">Desafio</h3>
+                <p data-i18n="maiChallengeText">
                   Muitos profissionais parceiros não concluíram o ensino médio e enfrentam barreiras de tempo, acesso e informação para retomar os estudos.
                 </p>
               </article>
               <article class="case-card context-card reveal">
-                <h3>Solução</h3>
-                <p>
+                <h3 data-i18n="caseSolutionTitle">Solução</h3>
+                <p data-i18n="maiSolutionText">
                   Um assistente conversacional que orienta a inscrição no programa, identifica perfis e adapta a jornada ao contexto de cada pessoa.
                 </p>
               </article>
@@ -970,9 +1114,9 @@
 
       <section class="case-section">
         <div class="case-section-header reveal">
-          <p class="case-section-label">Personas</p>
-          <h2 class="case-section-title">Personas.</h2>
-          <p class="case-section-description">
+          <p class="case-section-label" data-i18n="maiPersonasLabel">Personas</p>
+          <h2 class="case-section-title" data-i18n="maiPersonasTitle">Personas.</h2>
+          <p class="case-section-description" data-i18n="maiPersonasDescription">
             Três perfis orientaram as decisões de linguagem, fluxo e suporte ao longo da experiência.
           </p>
         </div>
@@ -990,14 +1134,14 @@
               <path class="stroke" d="M62 18l-6-6"></path>
             </svg>
             <h3>Marcos</h3>
-            <p class="persona-meta">28 anos · Entregador parceiro iFood</p>
-            <h4>Contexto</h4>
-            <p>Trabalha como entregador há 2 anos e não concluiu o ensino médio.</p>
-            <h4>Dores</h4>
+            <p class="persona-meta" data-i18n="maiPersonaMarcosMeta">28 anos · Entregador parceiro iFood</p>
+            <h4 data-i18n="personaContextLabel">Contexto</h4>
+            <p data-i18n="maiPersonaMarcosContext">Trabalha como entregador há 2 anos e não concluiu o ensino médio.</p>
+            <h4 data-i18n="personaPainsLabel">Dores</h4>
             <ul>
-              <li>Falta de tempo para buscar informações.</li>
-              <li>Desconhecimento de oportunidades gratuitas.</li>
-              <li>Sensação de que “não é mais hora” de estudar.</li>
+              <li data-i18n="maiPersonaMarcosPainOne">Falta de tempo para buscar informações.</li>
+              <li data-i18n="maiPersonaMarcosPainTwo">Desconhecimento de oportunidades gratuitas.</li>
+              <li data-i18n="maiPersonaMarcosPainThree">Sensação de que “não é mais hora” de estudar.</li>
             </ul>
           </article>
 
@@ -1013,14 +1157,14 @@
               <path class="stroke" d="M108 18l6-6"></path>
             </svg>
             <h3>Carla</h3>
-            <p class="persona-meta">35 anos · Dona de restaurante</p>
-            <h4>Contexto</h4>
-            <p>Gerencia uma pequena lanchonete cadastrada no iFood e tem ensino médio incompleto.</p>
-            <h4>Dores</h4>
+            <p class="persona-meta" data-i18n="maiPersonaCarlaMeta">35 anos · Dona de restaurante</p>
+            <h4 data-i18n="personaContextLabel">Contexto</h4>
+            <p data-i18n="maiPersonaCarlaContext">Gerencia uma pequena lanchonete cadastrada no iFood e tem ensino médio incompleto.</p>
+            <h4 data-i18n="personaPainsLabel">Dores</h4>
             <ul>
-              <li>Rotina intensa na gestão do negócio.</li>
-              <li>Insegurança sobre o processo de matrícula.</li>
-              <li>Dúvidas sobre validade do certificado.</li>
+              <li data-i18n="maiPersonaCarlaPainOne">Rotina intensa na gestão do negócio.</li>
+              <li data-i18n="maiPersonaCarlaPainTwo">Insegurança sobre o processo de matrícula.</li>
+              <li data-i18n="maiPersonaCarlaPainThree">Dúvidas sobre validade do certificado.</li>
             </ul>
           </article>
 
@@ -1036,14 +1180,14 @@
               <path class="stroke" d="M95 23h10"></path>
             </svg>
             <h3>Rafael</h3>
-            <p class="persona-meta">32 anos · Usuário curioso</p>
-            <h4>Contexto</h4>
-            <p>Chegou ao bot sem vínculo direto com o iFood, mas busca oportunidades de estudo.</p>
-            <h4>Dores</h4>
+            <p class="persona-meta" data-i18n="maiPersonaRafaelMeta">32 anos · Usuário curioso</p>
+            <h4 data-i18n="personaContextLabel">Contexto</h4>
+            <p data-i18n="maiPersonaRafaelContext">Chegou ao bot sem vínculo direto com o iFood, mas busca oportunidades de estudo.</p>
+            <h4 data-i18n="personaPainsLabel">Dores</h4>
             <ul>
-              <li>Não sabe se tem direito aos benefícios.</li>
-              <li>Precisa de orientação sobre como proceder.</li>
-              <li>Tem dúvidas sobre elegibilidade.</li>
+              <li data-i18n="maiPersonaRafaelPainOne">Não sabe se tem direito aos benefícios.</li>
+              <li data-i18n="maiPersonaRafaelPainTwo">Precisa de orientação sobre como proceder.</li>
+              <li data-i18n="maiPersonaRafaelPainThree">Tem dúvidas sobre elegibilidade.</li>
             </ul>
           </article>
         </div>
@@ -1051,9 +1195,9 @@
 
       <section class="case-section alt">
         <div class="case-section-header reveal">
-          <p class="case-section-label">Metodologia</p>
-          <h2 class="case-section-title">Etapas do projeto.</h2>
-          <p class="case-section-description">
+          <p class="case-section-label" data-i18n="maiMethodLabel">Metodologia</p>
+          <h2 class="case-section-title" data-i18n="maiMethodTitle">Etapas do projeto.</h2>
+          <p class="case-section-description" data-i18n="maiMethodDescription">
             Um processo em três frentes para entender o contexto, organizar a experiência e escrever a conversa com clareza.
           </p>
         </div>
@@ -1066,12 +1210,12 @@
               <path d="M66 56 L92 76" />
               <path d="M38 36 C42 31 49 29 56 32" />
             </svg>
-            <h3>Pesquisa</h3>
-            <p>Entendimento das barreiras, motivadores e contexto real de quem chegava ao fluxo.</p>
+            <h3 data-i18n="maiProcessResearchTitle">Pesquisa</h3>
+            <p data-i18n="maiProcessResearchText">Entendimento das barreiras, motivadores e contexto real de quem chegava ao fluxo.</p>
             <ul>
-              <li>Análise do público e do cenário de uso.</li>
-              <li>Mapeamento de jornadas e necessidades.</li>
-              <li>Levantamento de requisitos e validações.</li>
+              <li data-i18n="maiProcessResearchItemOne">Análise do público e do cenário de uso.</li>
+              <li data-i18n="maiProcessResearchItemTwo">Mapeamento de jornadas e necessidades.</li>
+              <li data-i18n="maiProcessResearchItemThree">Levantamento de requisitos e validações.</li>
             </ul>
           </article>
 
@@ -1088,12 +1232,12 @@
                 <rect x="86" y="49" width="24" height="18" rx="7" />
               </g>
             </svg>
-            <h3>Estrutura</h3>
-            <p>Organização dos fluxos, dos pontos de decisão e do caminho principal até a inscrição.</p>
+            <h3 data-i18n="maiProcessStructureTitle">Estrutura</h3>
+            <p data-i18n="maiProcessStructureText">Organização dos fluxos, dos pontos de decisão e do caminho principal até a inscrição.</p>
             <ul>
-              <li>Definição das jornadas por perfil.</li>
-              <li>Mapeamento de estados e transições.</li>
-              <li>Priorização de clareza em cada passo.</li>
+              <li data-i18n="maiProcessStructureItemOne">Definição das jornadas por perfil.</li>
+              <li data-i18n="maiProcessStructureItemTwo">Mapeamento de estados e transições.</li>
+              <li data-i18n="maiProcessStructureItemThree">Priorização de clareza em cada passo.</li>
             </ul>
           </article>
 
@@ -1106,12 +1250,12 @@
                 <path d="M37 21 H43" />
               </g>
             </svg>
-            <h3>Conversa</h3>
-            <p>Escrita de mensagens diretas, acolhedoras e consistentes com o tom do projeto.</p>
+            <h3 data-i18n="maiProcessConversationTitle">Conversa</h3>
+            <p data-i18n="maiProcessConversationText">Escrita de mensagens diretas, acolhedoras e consistentes com o tom do projeto.</p>
             <ul>
-              <li>Saudação, onboarding e confirmações.</li>
-              <li>Mensagens de erro e recuperação.</li>
-              <li>Ajuste fino de tom e voz.</li>
+              <li data-i18n="maiProcessConversationItemOne">Saudação, onboarding e confirmações.</li>
+              <li data-i18n="maiProcessConversationItemTwo">Mensagens de erro e recuperação.</li>
+              <li data-i18n="maiProcessConversationItemThree">Ajuste fino de tom e voz.</li>
             </ul>
           </article>
         </div>
@@ -1119,42 +1263,42 @@
 
       <section class="case-section flow-section alt">
         <div class="case-section-header reveal">
-          <p class="case-section-label">Fluxogramas</p>
-          <h2 class="case-section-title">Jornadas principais.</h2>
-          <p class="case-section-description">
+          <p class="case-section-label" data-i18n="maiFlowsLabel">Fluxogramas</p>
+          <h2 class="case-section-title" data-i18n="maiFlowsTitle">Jornadas principais.</h2>
+          <p class="case-section-description" data-i18n="maiFlowsDescription">
             Três jornadas resumidas para mostrar como a conversa muda conforme o contexto de entrada.
           </p>
         </div>
 
         <div class="flow-grid flow-summary-grid">
           <article class="flow-card flow-summary-card reveal">
-            <p class="flow-kicker">Fluxo 01</p>
-            <h3>Entregadores</h3>
-            <p>Entrada principal para parceiros do iFood que querem concluir o ensino médio.</p>
-            <span>Onboarding · validação · inscrição</span>
+            <p class="flow-kicker" data-i18n="maiFlowOneKicker">Fluxo 01</p>
+            <h3 data-i18n="maiFlowOneTitle">Entregadores</h3>
+            <p data-i18n="maiFlowOneText">Entrada principal para parceiros do iFood que querem concluir o ensino médio.</p>
+            <span data-i18n="maiFlowOneMeta">Onboarding · validação · inscrição</span>
           </article>
 
           <article class="flow-card flow-summary-card reveal">
-            <p class="flow-kicker">Fluxo 02</p>
-            <h3>Restaurantes</h3>
-            <p>Jornada para parceiros de restaurantes, com confirmação de vínculo e CNPJ.</p>
-            <span>Onboarding · vínculo · confirmação</span>
+            <p class="flow-kicker" data-i18n="maiFlowTwoKicker">Fluxo 02</p>
+            <h3 data-i18n="maiFlowTwoTitle">Restaurantes</h3>
+            <p data-i18n="maiFlowTwoText">Jornada para parceiros de restaurantes, com confirmação de vínculo e CNPJ.</p>
+            <span data-i18n="maiFlowTwoMeta">Onboarding · vínculo · confirmação</span>
           </article>
 
           <article class="flow-card flow-summary-card reveal">
-            <p class="flow-kicker">Fluxo 03</p>
-            <h3>Sem link de origem</h3>
-            <p>Fluxo alternativo para quem chega sem a origem já definida no sistema.</p>
-            <span>Boas-vindas · checagem · direcionamento</span>
+            <p class="flow-kicker" data-i18n="maiFlowThreeKicker">Fluxo 03</p>
+            <h3 data-i18n="maiFlowThreeTitle">Sem link de origem</h3>
+            <p data-i18n="maiFlowThreeText">Fluxo alternativo para quem chega sem a origem já definida no sistema.</p>
+            <span data-i18n="maiFlowThreeMeta">Boas-vindas · checagem · direcionamento</span>
           </article>
         </div>
       </section>
 
       <section class="case-section">
         <div class="case-section-header reveal">
-          <p class="case-section-label">Funcionalidades</p>
-          <h2 class="case-section-title">Funcionalidades.</h2>
-          <p class="case-section-description">
+          <p class="case-section-label" data-i18n="maiFeaturesLabel">Funcionalidades</p>
+          <h2 class="case-section-title" data-i18n="maiFeaturesTitle">Funcionalidades.</h2>
+          <p class="case-section-description" data-i18n="maiFeaturesDescription">
             Recursos básicos da conversa para orientar a entrada, validar informações e concluir a inscrição.
           </p>
         </div>
@@ -1167,8 +1311,8 @@
                 <path d="M13 13l4.5 4.5"></path>
               </svg>
             </div>
-            <h3>Entrada guiada</h3>
-            <p>Apresentação inicial do assistente e do próximo passo no fluxo.</p>
+            <h3 data-i18n="maiFeatureOneTitle">Entrada guiada</h3>
+            <p data-i18n="maiFeatureOneText">Apresentação inicial do assistente e do próximo passo no fluxo.</p>
           </article>
           <article class="feature-card reveal">
             <div class="process-icon" aria-hidden="true">
@@ -1177,8 +1321,8 @@
                 <path d="M8 19h8"></path>
               </svg>
             </div>
-            <h3>Validação simples</h3>
-            <p>Perguntas objetivas para confirmar dados e seguir com a jornada.</p>
+            <h3 data-i18n="maiFeatureTwoTitle">Validação simples</h3>
+            <p data-i18n="maiFeatureTwoText">Perguntas objetivas para confirmar dados e seguir com a jornada.</p>
           </article>
           <article class="feature-card reveal">
             <div class="process-icon" aria-hidden="true">
@@ -1186,8 +1330,8 @@
                 <path d="M5 8.5c0-2 1.6-3.5 3.6-3.5h6.8c2 0 3.6 1.5 3.6 3.5v4c0 2-1.6 3.5-3.6 3.5H12l-3.5 3v-3H8.6C6.6 16 5 14.5 5 12.5z"></path>
               </svg>
             </div>
-            <h3>Confirmação final</h3>
-            <p>Fechamento da inscrição com uma mensagem final e a próxima orientação.</p>
+            <h3 data-i18n="maiFeatureThreeTitle">Confirmação final</h3>
+            <p data-i18n="maiFeatureThreeText">Fechamento da inscrição com uma mensagem final e a próxima orientação.</p>
           </article>
         </div>
       </section>
@@ -1195,9 +1339,9 @@
       <section class="case-section">
         <div class="delivery-section-split">
           <div class="case-section-header reveal">
-            <p class="case-section-label">Entrega</p>
-            <h2 class="case-section-title">Escopo da minha atuação.</h2>
-            <p class="case-section-description">
+            <p class="case-section-label" data-i18n="caseDeliveryLabel">Entrega</p>
+            <h2 class="case-section-title" data-i18n="maiDeliveryTitle">Escopo da minha atuação.</h2>
+            <p class="case-section-description" data-i18n="maiDeliveryDescription">
               O trabalho concentrou-se na estruturação da jornada inicial, na definição dos fluxos principais e na escrita das mensagens essenciais da experiência.
             </p>
           </div>
@@ -1212,8 +1356,8 @@
                 </svg>
               </div>
               <div>
-                <h3>Estrutura do fluxo</h3>
-                <p>Definição do caminho inicial, das etapas principais e das saídas possíveis.</p>
+                <h3 data-i18n="maiDeliveryOneTitle">Estrutura do fluxo</h3>
+                <p data-i18n="maiDeliveryOneText">Definição do caminho inicial, das etapas principais e das saídas possíveis.</p>
               </div>
             </article>
             <article class="delivery-row reveal">
@@ -1224,8 +1368,8 @@
                 </svg>
               </div>
               <div>
-                <h3>UX writing</h3>
-                <p>Redação das mensagens centrais para orientar, confirmar e concluir a inscrição.</p>
+                <h3 data-i18n="maiDeliveryTwoTitle">UX writing</h3>
+                <p data-i18n="maiDeliveryTwoText">Redação das mensagens centrais para orientar, confirmar e concluir a inscrição.</p>
               </div>
             </article>
             <article class="delivery-row reveal">
@@ -1236,8 +1380,8 @@
                 </svg>
               </div>
               <div>
-                <h3>Entrega funcional</h3>
-                <p>Material preparado para seguir em evolução com o time do AprendiZAP.</p>
+                <h3 data-i18n="maiDeliveryThreeTitle">Entrega funcional</h3>
+                <p data-i18n="maiDeliveryThreeText">Material preparado para seguir em evolução com o time do AprendiZAP.</p>
               </div>
             </article>
           </div>
@@ -1246,9 +1390,9 @@
 
       <section class="case-section alt">
         <div class="case-section-header reveal">
-          <p class="case-section-label">Evolução</p>
-          <h2 class="case-section-title">Evolução do projeto.</h2>
-          <p class="case-section-description">
+          <p class="case-section-label" data-i18n="maiEvolutionLabel">Evolução</p>
+          <h2 class="case-section-title" data-i18n="maiEvolutionTitle">Evolução do projeto.</h2>
+          <p class="case-section-description" data-i18n="maiEvolutionDescription">
             Depois da entrega inicial, a experiência continuou evoluindo com o próprio time do AprendiZAP, incorporando ajustes, aprendizado de uso real e novas necessidades do produto.
           </p>
         </div>
@@ -1256,8 +1400,8 @@
     </main>
 
     <footer class="case-footer">
-      <span>© 2026 by Amanda Gomes.</span>
-      <div class="language-switcher" aria-label="Selecionar idioma">
+      <span data-i18n="footerCopyright">© 2026 by Amanda Gomes.</span>
+      <div class="language-switcher" aria-label="Selecionar idioma" data-i18n-attr="aria-label:languageLabel">
         <button class="active" type="button" data-lang="pt" aria-pressed="true">
           <span aria-hidden="true">🇧🇷</span>
           <span>PT</span>
