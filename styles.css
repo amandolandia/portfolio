@@ -1418,15 +1418,57 @@ footer {
     width: min(100% - 24px, 1240px);
   }
 
+  .section-title {
+    max-width: calc(100vw - 32px);
+    font-size: clamp(1.85rem, 8vw, 2.45rem);
+    overflow-wrap: break-word;
+  }
+
+  .hero {
+    padding: 108px 0 36px;
+  }
+
+  .hero-inner {
+    min-height: auto;
+    align-items: flex-start;
+  }
+
+  .hero-copy {
+    width: min(100%, 342px);
+  }
+
+  .hero-avatar {
+    width: clamp(112px, 31vw, 126px);
+    margin-bottom: 20px;
+  }
+
   .pill-button {
     width: min(100%, 280px);
     margin-inline: auto;
   }
 
   .hero-title {
-    width: min(100%, 280px);
+    width: min(100%, 318px);
     max-width: calc(100vw - 40px);
-    font-size: clamp(1.75rem, 7.8vw, 2.42rem);
+    margin-top: 0;
+    font-size: clamp(1.95rem, 8vw, 2.48rem);
+    line-height: 0.98;
+  }
+
+  .hero-summary {
+    width: min(100%, 318px);
+    max-width: calc(100vw - 44px);
+    margin-top: 18px;
+    font-size: 0.94rem;
+    line-height: 1.56;
+  }
+
+  .hero-bottom {
+    margin-top: 28px;
+  }
+
+  .scroll-cue {
+    width: 50px;
   }
 
   .hero-bottom p {
