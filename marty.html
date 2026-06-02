@@ -449,6 +449,7 @@
         display: grid;
         place-items: center;
         overflow: hidden;
+        transition: box-shadow 180ms ease, transform 180ms ease;
       }
 
       .voice-scale-marker img {
@@ -456,6 +457,16 @@
         height: 100%;
         object-fit: cover;
         border-radius: 50%;
+        transition: transform 180ms ease;
+      }
+
+      .voice-scale-marker:hover {
+        transform: translate(-50%, -50%) scale(1.12) rotate(-4deg);
+        box-shadow: 0 10px 24px color-mix(in srgb, var(--accent) 28%, transparent);
+      }
+
+      .voice-scale-marker:hover img {
+        transform: scale(1.08);
       }
 
       .voice-scale-row.casual .voice-scale-marker,
@@ -970,6 +981,11 @@
           transform: none;
         }
 
+        .context-card {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+
         .case-grid,
         .artifact-grid,
         .learning-grid {
@@ -985,20 +1001,27 @@
         }
 
         .voice-scale-row {
-          grid-template-columns: 1fr;
-          gap: 10px;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-areas:
+            "start end"
+            "bar bar";
+          gap: 10px 14px;
         }
 
         .voice-scale-label {
+          grid-area: start;
           text-align: left;
+          font-size: clamp(1.45rem, 6vw, 2rem);
         }
 
         .voice-scale-label.right {
-          text-align: left;
+          grid-area: end;
+          text-align: right;
         }
 
         .voice-scale-bar {
-          min-height: 24px;
+          grid-area: bar;
+          min-height: 40px;
         }
 
         .voice-scale-marker {
@@ -1161,11 +1184,34 @@
           gap: 18px;
         }
 
+        .voice-scale-row {
+          gap: 8px 12px;
+        }
+
+        .voice-scale-label {
+          font-size: clamp(1.35rem, 8vw, 1.9rem);
+        }
+
         .voice-card,
         .artifact-card,
         .learning-card,
         .timeline-item {
           padding: 18px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .voice-scale-marker,
+        .voice-scale-marker img {
+          transition: none;
+        }
+
+        .voice-scale-marker:hover {
+          transform: translate(-50%, -50%);
+        }
+
+        .voice-scale-marker:hover img {
+          transform: none;
         }
       }
     </style>
