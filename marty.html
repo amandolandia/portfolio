@@ -157,7 +157,6 @@
         border-radius: 8px;
         background: var(--paper);
         padding: 18px 20px;
-        text-align: left;
         transition: transform 180ms ease, border-color 180ms ease;
       }
 
@@ -857,7 +856,7 @@
         padding-left: 1.1rem;
       }
 
-      footer {
+      .case-footer {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -983,7 +982,7 @@
 
         .context-card {
           grid-template-columns: 1fr;
-          gap: 10px;
+          gap: 8px;
         }
 
         .case-grid,
@@ -1564,7 +1563,7 @@
       </section>
     </main>
 
-    <footer>
+    <footer class="case-footer">
       <span data-i18n="footerCopyright">© 2026 by Amanda Gomes.</span>
       <div class="language-switcher" aria-label="Selecionar idioma" data-i18n-attr="aria-label:languageLabel">
         <button class="active" type="button" data-lang="pt" aria-pressed="true">
