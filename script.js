@@ -24,6 +24,29 @@ const syncHeaderState = () => {
 syncHeaderState();
 window.addEventListener("scroll", syncHeaderState, { passive: true });
 
+document.querySelectorAll(".scroll-cue[href^='#']").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const target = document.querySelector(link.getAttribute("href"));
+    if (!target) return;
+
+    event.preventDefault();
+
+    const targetRect = target.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const visibleSectionHeight = Math.min(targetRect.height, viewportHeight * 0.72);
+    const centeredOffset = (viewportHeight - visibleSectionHeight) / 2;
+    const targetTop = targetRect.top + window.scrollY - centeredOffset;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    window.scrollTo({
+      top: Math.max(0, targetTop),
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+    });
+
+    history.pushState(null, "", link.getAttribute("href"));
+  });
+});
+
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
