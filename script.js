@@ -78,161 +78,39 @@ const initialLanguage = pageDefaultLanguage === "en"
   ? "en"
   : (savedLanguage || (browserLanguage.toLowerCase().startsWith("pt") ? "pt" : "en"));
 
-const navigationLanguageMap = {
-  "index.html": {
-    pt: {
-      home: "#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "#contact",
-    },
-    en: {
-      home: "#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "#contact",
-    },
-  },
-  "projetos.html": {
-    pt: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-    en: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-  },
-  "publicacoes.html": {
-    pt: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-    en: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-  },
-  "mai.html": {
-    pt: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-    en: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-  },
-  "marty.html": {
-    pt: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-    en: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-  },
-  "curriculo.html": {
-    pt: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-    en: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-  },
-  "secuida.html": {
-    pt: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-    en: {
-      home: "index.html#top",
-      projects: "projetos.html",
-      publications: "publicacoes.html",
-      about: "curriculo.html",
-      contact: "index.html#contact",
-    },
-  },
+const navigationLinks = {
+  home: "/",
+  projects: "/projetos/",
+  publications: "/publicacoes/",
+  about: "/curriculo/",
+  contact: "/#contact",
 };
 
 const updateNavigationLinks = (lang) => {
-  const currentFile = window.location.pathname.split("/").pop() || "index.html";
-  const navConfig = navigationLanguageMap[currentFile]?.[lang];
-  if (!navConfig) return;
-
   const navLinks = document.querySelectorAll("#site-nav a");
   navLinks.forEach((link) => {
     const text = link.textContent.trim().toLowerCase();
-    if (text === "home") link.href = navConfig.home;
-    if (text === "projects" || text === "projetos") link.href = navConfig.projects;
-    if (text === "publications" || text === "publicações") link.href = navConfig.publications;
-    if (text === "about" || text === "sobre") link.href = navConfig.about;
-    if (text === "contact" || text === "contato") link.href = navConfig.contact;
+    if (text === "home") link.href = navigationLinks.home;
+    if (text === "projects" || text === "projetos") link.href = navigationLinks.projects;
+    if (text === "publications" || text === "publicações") link.href = navigationLinks.publications;
+    if (text === "about" || text === "sobre") link.href = navigationLinks.about;
+    if (text === "contact" || text === "contato") link.href = navigationLinks.contact;
   });
 };
 
 const updateProjectLinks = (lang) => {
-  const currentFile = window.location.pathname.split("/").pop() || "index.html";
-
-  if (currentFile === "index.html") {
-    const maiCard = document.querySelector('a.work-feature[href="mai.html"]');
-    if (maiCard) maiCard.href = "mai.html";
-
-    const martyCard = document.querySelector('a.work-feature[href="marty.html"]');
-    if (martyCard) martyCard.href = "marty.html";
-
-    const moreProjects = document.querySelector('.more-projects a.pill-button[href="projetos.html"]');
-    if (moreProjects) moreProjects.href = "projetos.html";
-
-    const allPublications = document.querySelector('.more-projects a.pill-button[href="publicacoes.html"]');
-    if (allPublications) allPublications.href = "publicacoes.html";
-  }
-
-  if (currentFile === "projetos.html") {
-    const maiCard = document.querySelector('a.work-feature[href="mai.html"]');
-    if (maiCard) maiCard.href = "mai.html";
-
-    const martyCard = document.querySelector('a.work-feature[href="marty.html"]');
-    if (martyCard) martyCard.href = "marty.html";
-  }
+  document.querySelectorAll('a.work-feature[href="/mai/"]').forEach((link) => {
+    link.href = "/mai/";
+  });
+  document.querySelectorAll('a.work-feature[href="/marty/"]').forEach((link) => {
+    link.href = "/marty/";
+  });
+  document.querySelectorAll('.more-projects a.pill-button[href="/projetos/"]').forEach((link) => {
+    link.href = "/projetos/";
+  });
+  document.querySelectorAll('.more-projects a.pill-button[href="/publicacoes/"]').forEach((link) => {
+    link.href = "/publicacoes/";
+  });
 };
 
 const translations = {
